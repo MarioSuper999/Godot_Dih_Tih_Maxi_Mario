@@ -20,6 +20,7 @@ extends CharacterBody3D
 @export var input_jump : String = "input_jump"
 @export var input_sprint : String = "input_sprint"
 
+
 var mouse_captured : bool = true
 var look_rotation : Vector2
 var move_speed : float = 0.0
@@ -39,10 +40,8 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)  or not $"../UI".openui) and not mouse_captured:
+	if Input.is_action_just_pressed("left_click"):
 		capture_mouse()
-	if (Input.is_key_pressed(KEY_ESCAPE) or $"../UI".openui) and mouse_captured:
-		release_mouse()
 	if event is InputEventMouseMotion and mouse_captured:
 		target_rotation.y -= event.relative.x * mouse_sensitivity
 		target_rotation.x -= event.relative.y * mouse_sensitivity

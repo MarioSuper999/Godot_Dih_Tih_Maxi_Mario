@@ -10,8 +10,10 @@ func _process(_delta: float) -> void:
 		trues.append(i.visible)
 	if true in trues:
 		openui = true
+		$"../Player".release_mouse()
 	else:
 		openui = false
+		$"../Player".capture_mouse()
 	if Input.is_action_just_pressed("inventar"):
 		if not openui or Inventar.visible:
 			Inventar.visible = not Inventar.visible

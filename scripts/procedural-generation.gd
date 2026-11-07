@@ -62,11 +62,11 @@ func genPath(pos, length):
 func get_new_pos(pos, size, prev_size):
 	var pos_new = pos
 	var offset = (size + prev_size) / 2 
-	var dir = randi_range(0,1) * 2 - 1 
+	var dir = -1 * (randi_range(0,1) * 2 - 1) 
 	if randi() % 2 == 0:
-		pos_new = pos + Vector3(offset.x * dir,0,0)
+		pos_new = pos + Vector3(offset.x * dir ,0,0)
 	else:
-		pos_new = pos + Vector3(0,0,offset.z * dir)
+		pos_new = pos + Vector3(0,0,offset.z * dir )
 	return pos_new
 
 

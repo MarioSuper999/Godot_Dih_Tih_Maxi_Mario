@@ -21,22 +21,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 func _physics_process(delta: float) -> void:
+	if current_attributes.has("running") and target_in_running_range():
+		move_speed = sprint_speed
+	else:
+		move_speed = base_speed
 	if has_target:
-		if current_attributes.has("running") and target_in_running_range():
-			move_speed = sprint_speed
-		else:
-			move_speed = base_speed
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * move_speed
 		var direction := global_position.direction_to(next_location)
 		var rotation_speed : float = 4.0
 		var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
-		velocity = velocity.move_toward(new_velocity, 0.33)
+		velocity = velocity.move_toward(new_velocity, 0.33 * delta)
 		if abs(target_rotation - rotation.y) > deg_to_rad(60):
 			rotation_speed *= move_toward(1,5,0.2)
 		rotation.y = move_toward(rotation.y,target_rotation,delta * rotation_speed)
-
 	move_and_slide()
 	
 # pathfinding functions here:

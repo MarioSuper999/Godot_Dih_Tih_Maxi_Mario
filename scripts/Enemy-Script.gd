@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		var direction := global_position.direction_to(next_location)
 		
 		velocity = velocity.move_toward(new_velocity, 0.33 * delta * 20)
-		print(nav_agent.is_navigation_finished(),next_location,current_location)
+		#print(nav_agent.is_navigation_finished(),next_location,current_location)
 	move_and_slide()
 	
 # pathfinding functions here:

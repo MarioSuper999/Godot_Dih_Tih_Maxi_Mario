@@ -1,5 +1,6 @@
 extends Node
 signal generation_finished
+signal box_made
 const BOUNDARY_X := 1
 const BOUNDARY_Y := 1
 const BOUNDARY_Z := 1
@@ -10,6 +11,7 @@ var boxes_size: Array = []
 @onready var pposition = $"../Player".global_position
 
 func _ready() -> void:
+	connect("box_made", connect_signals)
 	var pos = Vector3(0,0,0)
 	
 	var spawn_box = make_box(Vector3(20,7.5,20))
@@ -31,16 +33,20 @@ func make_box(size):
 		var mesh_node = new_box.get_node("MeshInstance3D")
 		mesh_node.scale = size
 		
-		var area_collision_node = new_box.get_node("Area3D/CollisionShape3D")
-		area_collision_node.shape = area_collision_node.shape.duplicate()
-		area_collision_node.shape.size = size 
+		var area_node = new_box.get_node("Area3D")
+		area_node.scale = size + Vector3(0,5,0)
+		
+		#var area_collision_node = new_box.get_node("Area3D/CollisionShape3D")
+		#area_collision_node.shape = area_collision_node.shape.duplicate()
+		#area_collision_node.shape.size = size 
+		
 		
 		spawned_boxes.append(new_box)
 		boxes_size.append(size)
-		
 		return new_box
 
 func genPath(pos, length):
+	var attempts = 0
 	var i = len(spawned_boxes)
 	while i < length + 1:
 		var size = Vector3(randi_range(20,50),7.5,randi_range(20,50))
@@ -53,12 +59,17 @@ func genPath(pos, length):
 		
 		new_box.position += pos_new
 		
-		if collides(new_box):
+		if await collides(new_box) and attempts < 5:
+			attempts += 1
 			new_box.queue_free()
 			spawned_boxes.remove_at(-1)
 			boxes_size.remove_at(-1)
+		elif attempts == 5:
+			break
 		else:
 			pos = pos_new
+			if len(spawned_boxes) > 1: 
+				emit_signal("box_made")
 		i = len(spawned_boxes)
 
 
@@ -74,14 +85,26 @@ func get_new_pos(pos, size, prev_size):
 
 
 func collides(new_box) ->  bool:
+	await get_tree().physics_frame
 	var area_node = new_box.get_node("Area3D")
 	for boxes in spawned_boxes:
 		var boxes_area = boxes.get_node("Area3D")
+		print("f")
 		if area_node.overlaps_area(boxes_area):
 			return true
+	print("h")
 	return false
 	
+func more_path(body):
+	print("i")
+	var last_box_position = spawned_boxes[-1].position
+	genPath(last_box_position,5)
+
+func connect_signals():
+	spawned_boxes[-2].get_node("Area3D").body_entered.connect(more_path)
+	spawned_boxes[-1].get_node("Area3D").body_entered.disconnect(more_path)
 
 
 func _process(_delta: float) -> void:
+	
 	pass

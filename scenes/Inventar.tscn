@@ -1,19 +1,33 @@
 [gd_scene format=3 uid="uid://blf0cik0qu4j8"]
 
-[ext_resource type="Texture2D" uid="uid://41ytmryv1f63" path="res://assets/pngegg.png" id="1_rsc1w"]
+[ext_resource type="Texture2D" uid="uid://cq3jsk18kpy6r" path="res://assets/pngegg(1).png" id="1_rsc1w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vt5hi"]
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[node name="Control" type="Control" unique_id=950159955]
+[node name="Inventar" type="Control" unique_id=950159955]
 custom_maximum_size = Vector2(0, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
+offset_right = -1920.0
+offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2.415, 2.415)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1590939899]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 6.0
+offset_right = 2056.0
+offset_bottom = 5542.0
+scale = Vector2(0.079, 0.079)
+texture = ExtResource("1_rsc1w")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1975207399]
 layout_mode = 0
@@ -31,12 +45,17 @@ scale = Vector2(0.6, 0.6)
 [node name="Panel" type="Panel" parent="Panel4" unique_id=1140430758]
 z_index = 1
 layout_mode = 0
-offset_left = 123.333374
-offset_top = 314.99994
-offset_right = 163.33337
-offset_bottom = 354.99994
+offset_left = 123.0
+offset_top = 315.0
+offset_right = 163.0
+offset_bottom = 355.0
 scale = Vector2(1.56, 1.56)
 theme_override_styles/panel = SubResource("StyleBoxFlat_vt5hi")
+
+[node name="Button" type="Button" parent="Panel4/Panel" unique_id=490112307]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Panel2" type="Panel" parent="Panel4" unique_id=87163390]
 z_index = 1
@@ -48,21 +67,28 @@ offset_bottom = 355.0
 scale = Vector2(1.56, 1.56)
 theme_override_styles/panel = SubResource("StyleBoxFlat_vt5hi")
 
+[node name="Button2" type="Button" parent="Panel4/Panel2" unique_id=533594654]
+layout_mode = 0
+offset_left = -1.6302127e-05
+offset_right = 39.999985
+offset_bottom = 40.0
+
 [node name="Panel3" type="Panel" parent="Panel4" unique_id=1724562904]
 z_index = 1
 layout_mode = 0
-offset_left = 226.66663
-offset_top = 204.99998
-offset_right = 266.66663
-offset_bottom = 245.0
-scale = Vector2(1.56, 1.56)
+offset_left = 222.0
+offset_top = 205.0
+offset_right = 262.0
+offset_bottom = 245.00002
+scale = Vector2(1.75, 1.75)
 theme_override_styles/panel = SubResource("StyleBoxFlat_vt5hi")
+
+[node name="Button3" type="Button" parent="Panel4/Panel3" unique_id=1715120068]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 39.999996
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel4" unique_id=1238808428]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="Panel4/CenterContainer" unique_id=1590939899]
-layout_mode = 2
-texture = ExtResource("1_rsc1w")

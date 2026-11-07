@@ -39,9 +39,9 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or not $"../UI".openui:
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)  or not $"../UI".openui) and not mouse_captured:
 		capture_mouse()
-	if Input.is_key_pressed(KEY_ESCAPE) or $"../UI".openui:
+	if (Input.is_key_pressed(KEY_ESCAPE) or $"../UI".openui) and mouse_captured:
 		release_mouse()
 	if event is InputEventMouseMotion and mouse_captured:
 		target_rotation.y -= event.relative.x * mouse_sensitivity

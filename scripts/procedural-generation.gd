@@ -13,8 +13,7 @@ func _ready() -> void:
 	var pos = Vector3(0,0,0)
 	
 	var spawn_box = make_box(Vector3(20,7.5,20))
-	spawn_box.position = pos
-	
+	spawn_box.position = pos	
 	genPath(pos, pathlen)
 	await $"..".ready
 	emit_signal("generation_finished")

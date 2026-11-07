@@ -39,9 +39,9 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or not $"../UI".openui:
 		capture_mouse()
-	if Input.is_key_pressed(KEY_ESCAPE):
+	if Input.is_key_pressed(KEY_ESCAPE) or $"../UI".openui:
 		release_mouse()
 	if event is InputEventMouseMotion and mouse_captured:
 		target_rotation.y -= event.relative.x * mouse_sensitivity
@@ -71,6 +71,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.y = 0
+	
 	move_and_slide()
 
 func _process(delta: float) -> void:
@@ -86,6 +87,8 @@ func _process(delta: float) -> void:
 func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true
+	can_move = true
 func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
+	can_move = false

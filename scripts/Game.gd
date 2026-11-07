@@ -4,6 +4,7 @@ extends Node
 @onready var da_monsta := $Da_Monsta
 @onready var nav_region := $NavigationRegion3D
 @onready var rooms := $Rooms
+@onready var uicontrol := $UI
 
 func _ready() -> void:
 	rooms.connect("generation_finished", on_generation)

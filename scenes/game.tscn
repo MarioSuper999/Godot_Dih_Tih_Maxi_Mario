@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5c4y6ce5ppea" path="res://scripts/Game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ba3vtpoeac6lw" path="res://scenes/da_monsta.tscn" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://dvwyvaecqguvv" path="res://scripts/uicontrol.gd" id="2_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://d2xrw5swb5xo0" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ci3usjehu5y10" path="res://scenes/item.tscn" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://bamyao7j7la52" path="res://scripts/procedural-generation.gd" id="5_iywne"]
@@ -23,6 +24,19 @@ glow_enabled = true
 
 [node name="Game" type="Node3D" unique_id=1776949651]
 script = ExtResource("1_lnu2h")
+
+[node name="UI" type="Control" parent="." unique_id=41676934]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_u5sy4")
+
+[node name="Inventar" parent="UI" unique_id=950159955 instance=ExtResource("6_p57ef")]
+visible = false
+layout_mode = 1
+offset_right = -40.0
+offset_bottom = -40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=998541414]
 environment = SubResource("Environment_lnu2h")
@@ -46,5 +60,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7809863, 4.591441, 3.71281
 [node name="Rooms" type="Node3D" parent="." unique_id=1900144105]
 script = ExtResource("5_iywne")
 pathlen = 100
-
-[node name="Control" parent="." unique_id=950159955 instance=ExtResource("6_p57ef")]

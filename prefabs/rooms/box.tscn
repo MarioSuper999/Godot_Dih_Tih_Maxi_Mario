@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://dutvo3impdcnu"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_de6tj"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_yj7vy"]
+material = SubResource("StandardMaterial3D_de6tj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c40bg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a82t3"]
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=603713482]
 
@@ -12,3 +17,9 @@ mesh = SubResource("BoxMesh_yj7vy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2121641056]
 shape = SubResource("BoxShape3D_c40bg")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1942944809]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=507459033]
+shape = SubResource("BoxShape3D_a82t3")
+debug_color = Color(0.47843137, 0, 0.6627451, 1)

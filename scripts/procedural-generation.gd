@@ -32,6 +32,10 @@ func make_box(size):
 		var mesh_node = new_box.get_node("MeshInstance3D")
 		mesh_node.scale = size
 		
+		var area_collision_node = new_box.get_node("Area3D/CollisionShape3D")
+		area_collision_node.shape = area_collision_node.shape.duplicate()
+		area_collision_node.shape.size = size 
+		
 		spawned_boxes.append(new_box)
 		boxes_size.append(size)
 		
@@ -50,12 +54,12 @@ func genPath(pos, length):
 		
 		new_box.position += pos_new
 		
-		#if collides(new_box):
-			#new_box.queue_free()
-			#spawned_boxes.remove_at(-1)
-			#boxes_size.remove_at(-1)
-		#else:
-			#pos = pos_new
+		if collides(new_box):
+			new_box.queue_free()
+			spawned_boxes.remove_at(-1)
+			boxes_size.remove_at(-1)
+		else:
+			pos = pos_new
 		i = len(spawned_boxes)
 
 
@@ -71,20 +75,13 @@ func get_new_pos(pos, size, prev_size):
 
 
 func collides(new_box) ->  bool:
-	var collision_shape = new_box.get_node("CollisionShape3D")
-	var query = PhysicsShapeQueryParameters3D.new()
-	query.shape = collision_shape.shape
-	query.transform = collision_shape.global_transform
-	query.margin = 0.1
+	var area_node = new_box.get_node("Area3D")
+	for boxes in spawned_boxes:
+		var boxes_area = boxes.get_node("Area3D")
+		if area_node.overlaps_area(boxes_area):
+			return true
+	return false
 	
-	var space_state = get_viewport().get_world_3d().direct_space_state
-	var result = space_state.intersect_shape(query, 32)  # Max 32 results
-	if result.size() > 0:
-		print("Overlap detected! Result: ")
-		return true
-	else:
-		print("No overlap, tile added successfully.")
-		return false
 
 
 func _process(_delta: float) -> void:

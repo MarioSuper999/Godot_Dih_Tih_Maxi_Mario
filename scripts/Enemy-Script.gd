@@ -21,6 +21,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
 	if current_attributes.has("running") and target_in_running_range():
 		move_speed = sprint_speed
 	else:
@@ -32,10 +34,11 @@ func _physics_process(delta: float) -> void:
 		var direction := global_position.direction_to(next_location)
 		var rotation_speed : float = 4.0
 		var target_rotation := direction.signed_angle_to(Vector3.MODEL_FRONT, Vector3.DOWN)
-		velocity = velocity.move_toward(new_velocity, 0.33 * delta)
+		velocity = velocity.move_toward(new_velocity, 0.33 * delta * 20)
 		if abs(target_rotation - rotation.y) > deg_to_rad(60):
 			rotation_speed *= move_toward(1,5,0.2)
 		rotation.y = move_toward(rotation.y,target_rotation,delta * rotation_speed)
+		print(nav_agent.is_navigation_finished(),next_location)
 	move_and_slide()
 	
 # pathfinding functions here:

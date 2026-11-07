@@ -11,6 +11,7 @@ func _ready() -> void:
 	nav_region.connect("generation_finished", on_generation)
 func on_generation():
 	nav_region.bake_navigation_mesh()
+	await nav_region.bake_finished
 	bake_finished = true
 	
 func _physics_process(delta: float):

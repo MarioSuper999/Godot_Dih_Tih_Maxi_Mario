@@ -43,6 +43,8 @@ func make_box(size):
 		
 		spawned_boxes.append(new_box)
 		boxes_size.append(size)
+		if len(spawned_boxes) > 1: 
+			emit_signal("box_made")
 		return new_box
 
 func genPath(pos, length):
@@ -65,14 +67,12 @@ func genPath(pos, length):
 			spawned_boxes.remove_at(-1)
 			boxes_size.remove_at(-1)
 		elif attempts == 5:
-			break
-		else:
-			pos = pos_new
 			new_box.queue_free()
 			spawned_boxes.remove_at(-1)
 			boxes_size.remove_at(-1)
-			if len(spawned_boxes) > 1: 
-				emit_signal("box_made")
+			break
+		else:
+			pos = pos_new
 		i = len(spawned_boxes)
 
 
@@ -91,10 +91,11 @@ func collides(new_box) ->  bool:
 	await get_tree().physics_frame
 	var area_node = new_box.get_node("Area3D")
 	for boxes in spawned_boxes:
-		var boxes_area = boxes.get_node("Area3D")
-		print("f")
-		if area_node.overlaps_area(boxes_area):
-			return true
+		if not boxes:
+			var boxes_area = boxes.get_node("Area3D")
+			print("f")
+			if area_node.overlaps_area(boxes_area):
+				return true
 	print("h")
 	return false
 	
@@ -104,8 +105,8 @@ func more_path(body):
 	genPath(last_box_position,5)
 
 func connect_signals():
-	spawned_boxes[-2].get_node("Area3D").body_entered.connect(more_path)
-	spawned_boxes[-1].get_node("Area3D").body_entered.disconnect(more_path)
+	spawned_boxes[-1].get_node("Area3D").body_entered.connect(more_path)
+	spawned_boxes[-2].get_node("Area3D").body_entered.disconnect(more_path)
 
 
 func _process(_delta: float) -> void:

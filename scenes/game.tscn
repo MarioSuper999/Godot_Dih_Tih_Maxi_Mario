@@ -47,6 +47,8 @@ shadow_enabled = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=921410912]
 navigation_mesh = SubResource("NavigationMesh_yj7vy")
+script = ExtResource("5_iywne")
+pathlen = 3
 
 [node name="Da_Monsta" parent="." unique_id=1269639112 instance=ExtResource("2_lnu2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.538372, 0)
@@ -56,7 +58,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7730637, 4.621416, 8.80143
 
 [node name="Item" parent="." unique_id=1793539674 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7809863, 4.591441, 3.7128124)
-
-[node name="Rooms" type="Node3D" parent="." unique_id=1900144105]
-script = ExtResource("5_iywne")
-pathlen = 5

@@ -9,7 +9,7 @@ extends Node
 var bake_finished := false
 
 func _ready() -> void:
-	rooms.connect("generation_finished", on_generation)
+	nav_region.connect("generation_finished", on_generation)
 func on_generation():
 	nav_region.bake_navigation_mesh()
 	bake_finished = true

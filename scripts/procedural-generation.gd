@@ -68,6 +68,9 @@ func genPath(pos, length):
 			break
 		else:
 			pos = pos_new
+			new_box.queue_free()
+			spawned_boxes.remove_at(-1)
+			boxes_size.remove_at(-1)
 			if len(spawned_boxes) > 1: 
 				emit_signal("box_made")
 		i = len(spawned_boxes)
@@ -106,5 +109,4 @@ func connect_signals():
 
 
 func _process(_delta: float) -> void:
-	
 	pass

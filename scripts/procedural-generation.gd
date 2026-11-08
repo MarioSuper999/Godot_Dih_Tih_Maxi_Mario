@@ -5,11 +5,11 @@ const BOUNDARY_X := 1
 const BOUNDARY_Y := 1
 const BOUNDARY_Z := 1
 @onready var box = preload("res://prefabs/rooms/box.tscn")
-@onready var player = preload("res://scenes/player.tscn")
 var spawned_boxes: Array = []
 var boxes_size: Array = []
 @export var pathlen :int
-
+@onready var pposition = $"../Player".global_position
+@onready var player = $"../Player"
 
 func _ready() -> void:
 	make_box(Vector3(20,7.5,20))	

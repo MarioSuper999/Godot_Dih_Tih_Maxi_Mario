@@ -13,7 +13,7 @@ func _ready() -> void:
 	Steam.lobby_joined.connect(on_lobby_joined)
 	Steam.join_requested.connect(on_join_requested)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	Steam.run_callbacks()
 
 func host_lobby():

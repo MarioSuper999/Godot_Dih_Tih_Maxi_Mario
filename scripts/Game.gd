@@ -1,5 +1,6 @@
 extends Node
 
+@onready var player := $Player
 @onready var da_monsta := $Da_Monsta
 @onready var nav_region := $NavigationRegion3D
 @onready var uicontrol := $UI

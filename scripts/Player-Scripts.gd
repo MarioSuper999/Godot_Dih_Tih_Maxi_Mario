@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var mouse_sensitivity := 0.002
 @export_group("Speeds")
 @export var base_speed : float = 7.0
-@export var smooth_speed := 17.5
+@export var smooth_speed := 45 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! = 17.5#
 @export var smooth_speed_velocity := 17.5
 @export var jump_velocity : float = 3.5
 @export var sprint_speed : float = 10.0

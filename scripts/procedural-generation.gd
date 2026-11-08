@@ -7,7 +7,7 @@ const BOUNDARY_Z := 1
 @onready var box = preload("res://prefabs/rooms/box.tscn")
 var spawned_boxes: Array = []
 var boxes_size: Array = []
-@export var pathlen :int
+@export var pathlen : int = 50
 @onready var pposition = $"../Player".global_position
 
 func _ready() -> void:
@@ -15,10 +15,8 @@ func _ready() -> void:
 	var pos = Vector3(0,0,0)
 	
 	var spawn_box = make_box(Vector3(20,7.5,20))
-	spawn_box.position = pos	
+	spawn_box.position = pos
 	genPath(pos, pathlen)
-	await $"..".ready
-	emit_signal("generation_finished")
 	
 
 func make_box(size):
@@ -74,6 +72,7 @@ func genPath(pos, length):
 		else:
 			pos = pos_new
 		i = len(spawned_boxes)
+	generation_finished.emit()
 
 
 func get_new_pos(pos, size, prev_size):

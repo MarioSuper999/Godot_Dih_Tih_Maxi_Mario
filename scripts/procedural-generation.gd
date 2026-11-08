@@ -67,7 +67,7 @@ func genPath(length):
 		return
 	is_generating = true
 	
-	print("genpath")
+	#print("genpath")
 	#default branch index position of box -> box meaning the box which you try to put your new box next to
 	var branch_index = -2
 	var i = 0
@@ -83,18 +83,18 @@ func genPath(length):
 		if not await place_box(pos_new, new_box, branch_index):
 			if abs(branch_index) <= len(spawned_boxes):
 				branch_index -= 1
-				print("new Branch at:", branch_index)
+				#print("new Branch at:", branch_index)
 				i -= 1
 			else:
-				print("this path is not spawnable")
+				#print("this path is not spawnable")
 				break
 		else:
 			branch_index = -2
 			emit_signal("generation_finished")
 		i+=1
-	for f in range(len(spawned_boxes)):
-		print(spawned_boxes[f].position)
-		print(boxes_size[f])
+	#for f in range(len(spawned_boxes)):
+		#print(spawned_boxes[f].position)
+		#print(boxes_size[f])
 	is_generating = false
 
 func get_new_pos(pos, size, prev_size, attempt):
@@ -118,7 +118,7 @@ func get_new_pos(pos, size, prev_size, attempt):
 func collides(new_box) ->  bool:
 	var shape_node = new_box.get_node_or_null("Area3D/CollisionShape3D")
 	if not shape_node:
-		print("k")
+		#print("k")
 		return false
 		
 	var space_state = new_box.get_world_3d().direct_space_state
@@ -129,15 +129,15 @@ func collides(new_box) ->  bool:
 	query.exclude = [new_box.get_rid()]
 	var results = space_state.intersect_shape(query)
 	if results.size() > 0:
-		print("collides with", results)
-		print(new_box.position)
+		#print("collides with", results)
+		#print(new_box.position)
 		return true
-	print("no collision")
+	#print("no collision")
 	return false
 	
 	
 func more_path(body):
-	print("got message body entered")
+	#print("got message body entered")
 	if body == player:
 		if	spawned_boxes[-1].get_node("Area3D").body_entered.is_connected(more_path):
 				spawned_boxes[-1].get_node("Area3D").body_entered.disconnect(more_path)

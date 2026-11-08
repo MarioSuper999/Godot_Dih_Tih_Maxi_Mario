@@ -14,5 +14,5 @@ func on_generation():
 	await nav_region.bake_finished
 	bake_finished = true
 	
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	da_monsta.update_target_location(player.global_transform.origin,bake_finished)

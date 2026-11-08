@@ -1,6 +1,6 @@
 extends Node
 signal generation_finished
-#signal box_made
+signal box_made
 const BOUNDARY_X := 1
 const BOUNDARY_Y := 1
 const BOUNDARY_Z := 1
@@ -11,7 +11,7 @@ var boxes_size: Array = []
 @onready var pposition = $"../Player".global_position
 
 func _ready() -> void:
-	#connect("box_made", connect_signals)
+	connect("box_made", connect_signals)
 	var pos = Vector3(0,0,0)
 	
 	var spawn_box = make_box(Vector3(20,7.5,20))
@@ -42,8 +42,7 @@ func make_box(size):
 		spawned_boxes.append(new_box)
 		boxes_size.append(size)
 		if len(spawned_boxes) > 1: 
-			#emit_signal("box_made")
-			connect_signals()
+			emit_signal("box_made")
 		return new_box
 
 func genPath(pos, length):
@@ -99,15 +98,14 @@ func collides(new_box) ->  bool:
 	print("h")
 	return false
 	
-func more_path(_body):
+func more_path(body):
 	print("i")
 	var last_box_position = spawned_boxes[-1].position
 	genPath(last_box_position,5)
 
 func connect_signals():
 	spawned_boxes[-1].get_node("Area3D").body_entered.connect(more_path)
-	if len(spawned_boxes) > 2:
-		spawned_boxes[-2].get_node("Area3D").body_entered.disconnect(more_path)
+	spawned_boxes[-2].get_node("Area3D").body_entered.disconnect(more_path)
 
 
 func _process(_delta: float) -> void:

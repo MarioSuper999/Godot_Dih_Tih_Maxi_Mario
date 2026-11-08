@@ -20,7 +20,6 @@ sky = SubResource("Sky_yqjtg")
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yj7vy"]
-geometry_parsed_geometry_type = 1
 
 [node name="Game" type="Node3D" unique_id=1776949651]
 script = ExtResource("1_lnu2h")

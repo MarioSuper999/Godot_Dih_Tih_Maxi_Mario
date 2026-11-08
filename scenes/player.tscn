@@ -6,14 +6,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hijj4"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3vyb7"]
-properties/0/path = NodePath("../..:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("../..:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-
 [node name="Player" type="CharacterBody3D" unique_id=1196026899]
 script = ExtResource("1_gngvk")
 
@@ -35,7 +27,3 @@ fov = 90.0
 [node name="RHand" type="Node3D" parent="." unique_id=444554230]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59628296, 1.072876, -1.0580444)
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2109521716]
-root_path = NodePath("../Head/Camera3D")
-replication_config = SubResource("SceneReplicationConfig_3vyb7")

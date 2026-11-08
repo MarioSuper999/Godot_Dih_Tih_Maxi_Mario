@@ -33,7 +33,6 @@ func initialize_player(player : CharacterBody3D) -> void:
 	players.append(player)
 func _on_host_pressed() -> void:
 	NetworkingScript.host_lobby()
-	$"/root/Game/CanvasLayer/Host".visible = false
 func _on_multiplayer_spawner_spawned(node: Node) -> void:
 	if node is CharacterBody3D:
 		initialize_player(node)

@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://c5hkbw7v06nu8"]
 
 [ext_resource type="Script" uid="uid://c5c4y6ce5ppea" path="res://scripts/Game.gd" id="1_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://ba3vtpoeac6lw" path="res://scenes/da_monsta.tscn" id="2_lnu2h"]
 [ext_resource type="Script" uid="uid://dvwyvaecqguvv" path="res://scripts/uicontrol.gd" id="2_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://ci3usjehu5y10" path="res://scenes/item.tscn" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://bamyao7j7la52" path="res://scripts/procedural-generation.gd" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://blf0cik0qu4j8" path="res://scenes/Inventar.tscn" id="6_p57ef"]
 
@@ -24,6 +22,18 @@ geometry_parsed_geometry_type = 1
 
 [node name="Game" type="Node3D" unique_id=1776949651]
 script = ExtResource("1_lnu2h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1220406549]
+
+[node name="Host" type="Button" parent="CanvasLayer" unique_id=406156803]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 94.0
+offset_top = 276.0
+offset_right = -1630.0
+offset_bottom = -747.0
+text = "Host NOW"
 
 [node name="UI" type="Control" parent="." unique_id=41676934]
 layout_mode = 3
@@ -49,22 +59,6 @@ shadow_enabled = true
 navigation_mesh = SubResource("NavigationMesh_yj7vy")
 script = ExtResource("5_iywne")
 pathlen = 3
-
-[node name="Da_Monsta" parent="." unique_id=1269639112 instance=ExtResource("2_lnu2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.538372, 0)
-
-[node name="Item" parent="." unique_id=1793539674 instance=ExtResource("4_lbhrr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7809863, 4.591441, 3.7128124)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1220406549]
-
-[node name="Host" type="Button" parent="CanvasLayer" unique_id=406156803]
-anchors_preset = -1
-anchor_right = 0.102000006
-anchor_bottom = 0.053000003
-offset_right = 0.1599884
-offset_bottom = -0.24000168
-text = "Host NOW"
 
 [node name="SpawnPoint" type="Node3D" parent="." unique_id=865819102]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2065554, 5.994895, 6.387333)

@@ -1,0 +1,363 @@
+[gd_scene format=3 uid="uid://cooyxjd48nvdw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yj7vy"]
+
+[node name="Settings Tab Conatiner" type="Control" unique_id=1939202729]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=795344541]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = 75.0
+offset_right = -150.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Settings" type="TabBar" parent="TabContainer" unique_id=1677568333]
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Settings" unique_id=650233315]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings/MarginContainer" unique_id=373005065]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=583325681]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label2" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=1768040677]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label3" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=1927921020]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label4" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=1990334778]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label5" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=639531220]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label6" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=1208589129]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label7" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=352644657]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label8" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=1162795372]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label9" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer" unique_id=488250372]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Audio" type="TabBar" parent="TabContainer" unique_id=1516990694]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Audio" unique_id=207332622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Audio/MarginContainer" unique_id=1463314558]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=1570897860]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label2" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=542148827]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label3" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=2043865907]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label4" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=1506161173]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label5" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=157718990]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label6" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=830197281]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label7" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=359934208]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label8" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=464060395]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label9" type="Label" parent="TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=545757215]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Graphics" type="TabBar" parent="TabContainer" unique_id=310430974]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Graphics" unique_id=2022662811]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer" unique_id=1091672428]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=142322883]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label2" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=834580110]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label3" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=2139720298]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label4" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=1877375024]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label5" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=1444563326]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label6" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=1625868609]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label7" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=260557071]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label8" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=747790410]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label9" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer" unique_id=11768588]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Controls" type="TabBar" parent="TabContainer" unique_id=185908171]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls" unique_id=671465798]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer" unique_id=705239081]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1561986585]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label2" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1348482676]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label3" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1871378636]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label4" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1122420504]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label5" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1263108823]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label6" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1037304795]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label7" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=299091948]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label8" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1647471378]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label9" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1427740006]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Accesibility" type="TabBar" parent="TabContainer" unique_id=2038059897]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Accesibility" unique_id=748312250]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Accesibility/MarginContainer" unique_id=760126630]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=480483860]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label2" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=1770673095]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label3" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=523064115]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label4" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=1335455936]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label5" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=786838692]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label6" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=1382216461]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label7" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=297328900]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label8" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=482366872]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")
+
+[node name="Label9" type="Label" parent="TabContainer/Accesibility/MarginContainer/VBoxContainer" unique_id=2079991036]
+layout_mode = 2
+text = "123456789"
+label_settings = SubResource("LabelSettings_yj7vy")

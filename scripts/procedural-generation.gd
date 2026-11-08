@@ -70,6 +70,7 @@ func genPath(length):
 	#print("genpath")
 	#default branch index position of box -> box meaning the box which you try to put your new box next to
 	var branch_index = -2
+	var branch_backoff = 0
 	var i = 0
 	while i < length:
 		var size = Vector3(randi_range(20,50),7.5,randi_range(20,50))
@@ -82,7 +83,8 @@ func genPath(length):
 		
 		if not await place_box(pos_new, new_box, branch_index):
 			if abs(branch_index) <= len(spawned_boxes):
-				branch_index -= 1
+				branch_index -= 1 + 3* branch_backoff
+				branch_backoff += 1 
 				#print("new Branch at:", branch_index)
 				i -= 1
 			else:
@@ -90,6 +92,7 @@ func genPath(length):
 				break
 		else:
 			branch_index = -2
+			branch_backoff = 0
 			emit_signal("generation_finished")
 		i+=1
 	#for f in range(len(spawned_boxes)):
@@ -98,7 +101,7 @@ func genPath(length):
 	is_generating = false
 
 func get_new_pos(pos, size, prev_size, attempt):
-	var dirs = ["x_negative","x_positive", "z_negative", "z_positive"]
+	var dirs = ["x_negative", "x_positive", "z_negative", "z_positive"]
 	dirs.shuffle()
 	var dir = dirs[attempt]
 	var pos_new = pos

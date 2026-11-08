@@ -1,15 +1,14 @@
 extends Node
 signal generation_finished
-signal box_made
 const BOUNDARY_X := 1
 const BOUNDARY_Y := 1
 const BOUNDARY_Z := 1
 @onready var box = preload("res://prefabs/rooms/box.tscn")
-@onready var player = preload("res://scenes/player.tscn")
+@onready var player = $"../Player"
 var spawned_boxes: Array = []
 var boxes_size: Array = []
 @export var pathlen :int
-
+var is_generating = false
 
 func _ready() -> void:
 	make_box(Vector3(20,7.5,20))	
@@ -34,61 +33,85 @@ func make_box(size):
 	
 		spawned_boxes.append(new_box)
 		boxes_size.append(size)
-		if len(spawned_boxes) > 1: 
+		if len(spawned_boxes) > 1 :
 			connect_signals()
 		return new_box
 
 
 func place_box(pos_new, new_box, branch_index):
-	new_box.position += pos_new
 	var attempts = 0
-	while attempts <5:
-		if not collides(new_box):
+	new_box.position += pos_new
+	while attempts <4:
+		await get_tree().physics_frame
+		if not is_instance_valid(spawned_boxes[branch_index]):
+			new_box.queue_free()
+			spawned_boxes.pop_back()
+			boxes_size.pop_back()
+			return false
+		var prev_box = spawned_boxes[branch_index].position
+		var prev_size = boxes_size[branch_index]
+		if not await collides(new_box):
 			return true
 		else:
+			pos_new = get_new_pos(prev_box, new_box.get_node("CollisionShape3D").shape.size, prev_size, attempts)
 			attempts += 1
-			pos_new = get_new_pos(spawned_boxes[branch_index].position, new_box.get_node("CollisionShape3D").scale, boxes_size[branch_index])
-	
+			new_box.position = pos_new
 	new_box.queue_free()
-	spawned_boxes.remove_at(-1)
-	boxes_size.remove_at(-1)
+	spawned_boxes.pop_back()
+	boxes_size.pop_back()
 	return false
 	
 
 func genPath(length):
+	if is_generating:
+		return
+	is_generating = true
+	
 	print("genpath")
 	#default branch index position of box -> box meaning the box which you try to put your new box next to
 	var branch_index = -2
-	for i in range(length):
+	var i = 0
+	while i < length:
 		var size = Vector3(randi_range(20,50),7.5,randi_range(20,50))
 		
-		var prev_size = boxes_size [i - 1]
+		var prev_size = boxes_size [branch_index +1 ]
 		
-		var pos_new = get_new_pos(spawned_boxes[-1].position, size, prev_size)
+		var pos_new = get_new_pos(spawned_boxes[branch_index + 1].position, size, prev_size,randi_range(0,3))
 		
 		var new_box = make_box(size)
 		
-		if not place_box(pos_new, new_box, branch_index):
-			if abs(branch_index) < len(spawned_boxes):
+		if not await place_box(pos_new, new_box, branch_index):
+			if abs(branch_index) <= len(spawned_boxes):
 				branch_index -= 1
-				print("new Branch")
+				print("new Branch at:", branch_index)
+				i -= 1
 			else:
 				print("this path is not spawnable")
 				break
-			i -= 1
 		else:
 			branch_index = -2
 			emit_signal("generation_finished")
+		i+=1
+	for f in range(len(spawned_boxes)):
+		print(spawned_boxes[f].position)
+		print(boxes_size[f])
+	is_generating = false
 
-
-func get_new_pos(pos, size, prev_size):
+func get_new_pos(pos, size, prev_size, attempt):
+	var dirs = ["x_negative","x_positive", "z_negative", "z_positive"]
+	dirs.shuffle()
+	var dir = dirs[attempt]
 	var pos_new = pos
-	var offset = (size + prev_size) / 2 
-	var dir = -1 * (randi_range(0,1) * 2 - 1) 
-	if randi() % 2 == 0:
-		pos_new = pos + Vector3(offset.x * dir ,0,0)
-	else:
-		pos_new = pos + Vector3(0,0,offset.z * dir )
+	var offsetx = (size.x/2) + (prev_size.x/ 2)
+	var offsetz = (size.z/2) + (prev_size.z/ 2) 
+	if dir == "x_negative":
+		pos_new = pos + Vector3(-offsetx ,0,0)
+	elif dir == "x_positive":
+		pos_new = pos + Vector3(offsetx,0,0)		
+	elif dir == "z_negative":
+		pos_new = pos + Vector3(0,0, -offsetz)
+	elif dir == "z_positive":
+		pos_new = pos + Vector3(0,0,offsetz)
 	return pos_new
 
 
@@ -103,23 +126,28 @@ func collides(new_box) ->  bool:
 	var query = PhysicsShapeQueryParameters3D.new()
 	query.shape = shape_node.shape
 	query.transform = shape_node.global_transform
-	query.exclude = [new_box]
+	query.exclude = [new_box.get_rid()]
 	var results = space_state.intersect_shape(query)
 	if results.size() > 0:
-		print("collides")
+		print("collides with", results)
+		print(new_box.position)
 		return true
 	print("no collision")
 	return false
 	
+	
 func more_path(body):
 	print("got message body entered")
 	if body == player:
+		if	spawned_boxes[-1].get_node("Area3D").body_entered.is_connected(more_path):
+				spawned_boxes[-1].get_node("Area3D").body_entered.disconnect(more_path)
 		genPath(5)
 
 func connect_signals():
-	spawned_boxes[-1].get_node("Area3D").body_entered.connect(more_path)
 	if spawned_boxes[-2].get_node("Area3D").body_entered.is_connected(more_path):
 		spawned_boxes[-2].get_node("Area3D").body_entered.disconnect(more_path)
+	spawned_boxes[-1].get_node("Area3D").body_entered.connect(more_path)
+
 
 
 func _process(_delta: float) -> void:

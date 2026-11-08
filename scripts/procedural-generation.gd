@@ -83,9 +83,14 @@ func genPath(length):
 		
 		if not await place_box(pos_new, new_box, branch_index):
 			if abs(branch_index) <= len(spawned_boxes):
-				branch_index -= 1 + 3* branch_backoff
-				branch_backoff += 1 
+				if abs(branch_index)+ 1 + 3* branch_backoff <= len(spawned_boxes):
+					branch_index -= 1 + 3* branch_backoff
+				elif abs(branch_index)+ 1 <= len(spawned_boxes):
+					branch_index -= 1
+				else:
+					branch_index = - len(spawned_boxes) 
 				#print("new Branch at:", branch_index)
+				branch_backoff += 1
 				i -= 1
 			else:
 				#print("this path is not spawnable")

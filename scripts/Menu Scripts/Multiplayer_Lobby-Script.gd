@@ -1,11 +1,13 @@
 class_name Lobby
 extends Control
 signal leave_lobby
+signal max_lobby
 
 const PLAYER_PROFILE = preload("res://scenes/Menus/profile_button.tscn")
 @onready var profile_container: VBoxContainer = $MarginContainer/MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer
 @onready var leave_button: Button = $"MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Leave Button"
 @onready var customize_button: Button = $"MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Customize Button"
+@onready var invite_button: Button = $"MarginContainer/MarginContainer2/MarginContainer/VBoxContainer/Invite Button"
 
 var ready_yet : bool = false
 
@@ -25,6 +27,8 @@ func on_player_joined():
 		new_profile.text = str(Steam.getFriendPersonaName(NetworkingScript.players_on_server[NetworkingScript.players_on_server.size()-1]))
 		profile_container.add_child(new_profile)
 		ready_yet = true
+	if NetworkingScript.players_on_server.size() == NetworkingScript.MAX_MEMBERS:
+		invite_button.queue_free()
 
 func on_leave_pressed():
 	get_tree().change_scene_to_file("res://scenes/Menus/main_menu.tscn")

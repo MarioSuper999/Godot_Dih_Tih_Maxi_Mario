@@ -50,7 +50,7 @@ shadow_enabled = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=921410912]
 navigation_mesh = SubResource("NavigationMesh_yj7vy")
 script = ExtResource("5_iywne")
-pathlen = 500
+pathlen = 10
 
 [node name="Da_Monsta" parent="." unique_id=1269639112 instance=ExtResource("2_lnu2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.538372, 0)

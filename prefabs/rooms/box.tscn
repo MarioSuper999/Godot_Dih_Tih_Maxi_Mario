@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dutvo3impdcnu"]
 
+[ext_resource type="Script" uid="uid://b4rvxtk4tj6r4" path="res://prefabs/rooms/gen-room.gd" id="1_eisrx"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_de6tj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yj7vy"]
@@ -10,6 +12,7 @@ material = SubResource("StandardMaterial3D_de6tj")
 [sub_resource type="BoxShape3D" id="BoxShape3D_a82t3"]
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=603713482]
+script = ExtResource("1_eisrx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1164685582]
 transform = Transform3D(20, 0, 0, 0, 7.4999995, 0, 0, 0, 20, 0, 0, 0)

@@ -11,15 +11,15 @@ var boxes_size: Array = []
 var is_generating = false
 
 func _ready() -> void:
-	make_box(Vector3(20,7.5,20))	
-	genPath(pathlen)
+	make_box()	
+	#genPath(pathlen)
 	await $"..".ready
 	
 
-func make_box(size):
+func make_box():
 		var new_box = box.instantiate()
 		add_child(new_box)
-		
+		var size = new_box.get_room_type()
 		var collision_node = new_box.get_node("CollisionShape3D")
 		collision_node.shape = collision_node.shape.duplicate()
 		collision_node.shape.size = size 
@@ -66,20 +66,21 @@ func genPath(length):
 	if is_generating:
 		return
 	is_generating = true
-	
+	var new_box = spawned_boxes[0]
+	var size= Vector3()
 	#print("genpath")
 	#default branch index position of box -> box meaning the box which you try to put your new box next to
 	var branch_index = -2
 	var branch_backoff = 0
 	var i = 0
 	while i < length:
-		var size = Vector3(randi_range(20,50),7.5,randi_range(20,50))
+		new_box = make_box()
+		
+
 		
 		var prev_size = boxes_size [branch_index +1 ]
 		
 		var pos_new = get_new_pos(spawned_boxes[branch_index + 1].position, size, prev_size,randi_range(0,3))
-		
-		var new_box = make_box(size)
 		
 		if not await place_box(pos_new, new_box, branch_index):
 			if abs(branch_index) <= len(spawned_boxes):

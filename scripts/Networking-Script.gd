@@ -24,14 +24,14 @@ func host_lobby():
 
 func on_lobby_created(connect : int, lobby_id : int) -> void:
 	if connect == Steam.RESULT_OK:
+		print("added")
+		var my_steam_id : int = Steam.getSteamID()
+		players_on_server.append(my_steam_id)
 		peer = SteamMultiplayerPeer.new()
 		peer.server_relay = true
 		peer.create_host()
 		multiplayer.multiplayer_peer = peer
 		host_created.emit()
-		var my_steam_id : int = Steam.getSteamID()
-		print("added")
-		players_on_server.append(my_steam_id)
 
 func on_lobby_joined(lobby_id : int, permissions : int, locked : bool, response : int) -> void:
 	if response == Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
@@ -48,6 +48,7 @@ func _on_peer_connected(id : int):
 		var player_steam_id = steam_peer.get_steam_id_for_peer_id(id)
 		players_on_server.append(player_steam_id)
 		ready_to_call.emit()
+		print("hi mwommy")
 
 func on_join_requested(lobby_id : int, steam_id : int) -> void:
 	Steam.joinLobby(lobby_id)

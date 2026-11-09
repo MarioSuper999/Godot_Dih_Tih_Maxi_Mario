@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://buovsbbkla7cl"]
+
+[ext_resource type="Script" uid="uid://c2te4glssqndw" path="res://scripts/Menu Scripts/Player_Profile-Script.gd" id="1_ugagi"]
+
+[node name="Profile Button" type="Button" unique_id=867906570]
+custom_minimum_size = Vector2(384, 69)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Player"
+script = ExtResource("1_ugagi")

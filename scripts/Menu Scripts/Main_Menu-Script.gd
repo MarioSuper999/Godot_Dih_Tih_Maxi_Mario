@@ -19,11 +19,12 @@ func _ready() -> void:
 
 
 func on_host_pressed() -> void:
-	pass
-	#get_tree().change_scene_to_packed(lobby)
+	NetworkingScript.host_lobby()
+	get_tree().change_scene_to_file("res://scenes/Menus/multiplayer_lobby.tscn")
 	
 func on_join_pressed() -> void:
 	Steam.activateGameOverlay()
+
 	
 func on_customize_pressed() -> void:
 	pass

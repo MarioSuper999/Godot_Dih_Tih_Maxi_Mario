@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ci58st6dfvaad"]
+
+[ext_resource type="Script" uid="uid://c2te4glssqndw" path="res://scripts/Menu Scripts/Player_Profile-Script.gd" id="1_uipxa"]
+
+[node name="Player Profile" type="Control" unique_id=913064323]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uipxa")
+
+[node name="Profile Button" type="Button" parent="." unique_id=1956733249]
+custom_minimum_size = Vector2(384, 69)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Player"

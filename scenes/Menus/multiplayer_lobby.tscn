@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqcthu3memqxu"]
 
-[ext_resource type="Script" uid="uid://ce880x88kmsbf" path="res://Multiplayer_Lobby-Script.gd" id="1_i1rne"]
+[ext_resource type="Script" uid="uid://ce880x88kmsbf" path="res://scripts/Menu Scripts/Multiplayer_Lobby-Script.gd" id="1_i1rne"]
 [ext_resource type="Texture2D" uid="uid://bi5p6yjgox8jf" path="res://assets/Spring2014_Virginia-Underground_Luray-Caverns-Dream-Lake_Credit_Susana-Raab.jpg" id="2_d53w3"]
 
 [sub_resource type="SystemFont" id="SystemFont_p8bru"]
@@ -18,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i1rne")
+metadata/_edit_vertical_guides_ = [456.0]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=393060458]
 layout_mode = 1

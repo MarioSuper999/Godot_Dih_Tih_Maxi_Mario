@@ -1,17 +1,20 @@
 extends Node
 
+signal ready_to_call
 signal host_created()
 
 const LOBBY_TYPE := Steam.LobbyType.LOBBY_TYPE_FRIENDS_ONLY
 const MAX_MEMBERS := 6
 
 var peer : SteamMultiplayerPeer
+var players_on_server : Array = []
 
 func _ready() -> void:
 	Steam.initRelayNetworkAccess()
 	Steam.lobby_created.connect(on_lobby_created)
 	Steam.lobby_joined.connect(on_lobby_joined)
 	Steam.join_requested.connect(on_join_requested)
+	multiplayer.peer_connected.connect(_on_peer_connected)
 
 func _process(_delta: float) -> void:
 	Steam.run_callbacks()
@@ -26,6 +29,9 @@ func on_lobby_created(connect : int, lobby_id : int) -> void:
 		peer.create_host()
 		multiplayer.multiplayer_peer = peer
 		host_created.emit()
+		var my_steam_id : int = Steam.getSteamID()
+		print("added")
+		players_on_server.append(my_steam_id)
 
 func on_lobby_joined(lobby_id : int, permissions : int, locked : bool, response : int) -> void:
 	if response == Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
@@ -35,6 +41,13 @@ func on_lobby_joined(lobby_id : int, permissions : int, locked : bool, response 
 		peer.server_relay = true
 		peer.create_client(Steam.getLobbyOwner(lobby_id))
 		multiplayer.multiplayer_peer = peer
+
+func _on_peer_connected(id : int):
+	var steam_peer : SteamMultiplayerPeer = multiplayer.multiplayer_peer
+	if steam_peer:
+		var player_steam_id = steam_peer.get_steam_id_for_peer_id(id)
+		players_on_server.append(player_steam_id)
+		ready_to_call.emit()
 
 func on_join_requested(lobby_id : int, steam_id : int) -> void:
 	Steam.joinLobby(lobby_id)

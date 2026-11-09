@@ -6,8 +6,11 @@ extends Node
 @onready var uicontrol := $UI
 var bake_finished := false
 
+
+
 func _ready() -> void:
 	nav_region.connect("generation_finished", on_generation)
+	uicontrol.connect("uiopen", _openui)
 func on_generation():
 	#if not bake_finished:
 		#return
@@ -17,3 +20,7 @@ func on_generation():
 	
 func _physics_process(_delta: float):
 	da_monsta.update_target_location(player.global_transform.origin,bake_finished)
+
+func _openui(state):
+	for child in $Items.get_children():
+		child._change_pickup(state)

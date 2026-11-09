@@ -2,7 +2,7 @@ extends Control
 
 var openui : bool
 @onready var Inventar := $Inventar
-
+signal uiopen
 
 func _process(_delta: float) -> void:
 	var trues = []
@@ -14,6 +14,7 @@ func _process(_delta: float) -> void:
 	else:
 		openui = false
 		$"../Player".capture_mouse()
+	emit_signal("uiopen", openui)
 	if Input.is_action_just_pressed("inventar"):
 		if not openui or Inventar.visible:
 			Inventar.visible = not Inventar.visible

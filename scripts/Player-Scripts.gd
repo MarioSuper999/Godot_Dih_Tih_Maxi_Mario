@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	if can_move:
 		if can_lerp:
 			weight_velocity = 1 - exp(-smooth_speed_velocity * delta)
-		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
+		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back) if mouse_captured else Vector2(0,0)
 		var move_dir := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		smooth_velocity.x = lerp(smooth_velocity.x,move_dir.x,weight_velocity)
 		smooth_velocity.z = lerp(smooth_velocity.z,move_dir.z,weight_velocity)
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.y = 0
-	
+		
 	move_and_slide()
 
 func _process(delta: float) -> void:
@@ -86,8 +86,6 @@ func _process(delta: float) -> void:
 func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true
-	can_move = true
 func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
-	can_move = false

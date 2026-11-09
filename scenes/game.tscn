@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ci3usjehu5y10" path="res://scenes/item.tscn" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://bamyao7j7la52" path="res://scripts/procedural-generation.gd" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://blf0cik0qu4j8" path="res://scenes/Inventar.tscn" id="6_p57ef"]
+[ext_resource type="Image" uid="uid://bwb5oplacr7lm" path="res://assets/shared image.jpeg" id="8_gee14"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -59,3 +60,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7730637, 4.621416, 8.80143
 
 [node name="Item" parent="." unique_id=1793539674 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7809863, 4.591441, 3.7128124)
+icon = ExtResource("8_gee14")

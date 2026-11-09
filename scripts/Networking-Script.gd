@@ -7,6 +7,7 @@ const LOBBY_TYPE := Steam.LobbyType.LOBBY_TYPE_FRIENDS_ONLY
 const MAX_MEMBERS := 6
 
 var peer : SteamMultiplayerPeer
+var current_lobby_id : int
 var players_on_server : Array = []
 
 func _ready() -> void:
@@ -24,7 +25,7 @@ func host_lobby():
 
 func on_lobby_created(connect : int, lobby_id : int) -> void:
 	if connect == Steam.RESULT_OK:
-		print("added")
+		current_lobby_id = lobby_id
 		var my_steam_id : int = Steam.getSteamID()
 		players_on_server.append(my_steam_id)
 		peer = SteamMultiplayerPeer.new()

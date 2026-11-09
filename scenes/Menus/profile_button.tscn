@@ -6,5 +6,8 @@
 custom_minimum_size = Vector2(384, 69)
 offset_right = 8.0
 offset_bottom = 8.0
+theme_override_font_sizes/font_size = 24
 text = "Player"
 script = ExtResource("1_ugagi")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

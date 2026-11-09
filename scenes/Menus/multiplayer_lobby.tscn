@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ce880x88kmsbf" path="res://scripts/Menu Scripts/Multiplayer_Lobby-Script.gd" id="1_i1rne"]
 [ext_resource type="Texture2D" uid="uid://bi5p6yjgox8jf" path="res://assets/Spring2014_Virginia-Underground_Luray-Caverns-Dream-Lake_Credit_Susana-Raab.jpg" id="2_d53w3"]
+[ext_resource type="PackedScene" uid="uid://buovsbbkla7cl" path="res://scenes/Menus/profile_button.tscn" id="3_d53w3"]
+[ext_resource type="Script" uid="uid://cm5o1efs08xro" path="res://scenes/Menus/Invite_Button.gd" id="4_u0sqb"]
 
 [sub_resource type="SystemFont" id="SystemFont_p8bru"]
 font_names = PackedStringArray("Mistral")
@@ -37,6 +39,7 @@ layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1418640482]
 layout_mode = 1
@@ -45,33 +48,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 1464
 theme_override_constants/margin_bottom = 24
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer" unique_id=127028870]
-layout_mode = 2
-theme_override_constants/margin_top = 207
-theme_override_constants/margin_bottom = 240
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MarginContainer2" unique_id=1116465392]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer2" unique_id=776471283]
-layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2/MarginContainer" unique_id=1263545895]
-custom_minimum_size = Vector2(0, 536)
-layout_mode = 2
-theme_override_constants/separation = 24
-
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1077236321]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_bottom = 825
 
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer" unique_id=24849220]
@@ -84,19 +69,23 @@ vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1073110652]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 96
 
 [node name="Seperator" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1305671668]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=205780877]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = -96
 theme_override_constants/margin_top = 816
 theme_override_constants/margin_right = -336
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=2043973960]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 24
 alignment = 1
 
@@ -112,3 +101,37 @@ custom_minimum_size = Vector2(240, 96)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Leave"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer" unique_id=127028870]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 207
+theme_override_constants/margin_bottom = 240
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MarginContainer2" unique_id=1116465392]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer2" unique_id=776471283]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2/MarginContainer" unique_id=1263545895]
+custom_minimum_size = Vector2(0, 536)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer2/MarginContainer/VBoxContainer" unique_id=659312583]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Invite Button" parent="MarginContainer/MarginContainer2/MarginContainer/VBoxContainer" unique_id=867906570 instance=ExtResource("3_d53w3")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "+"
+script = ExtResource("4_u0sqb")

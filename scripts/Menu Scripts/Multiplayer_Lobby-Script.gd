@@ -3,7 +3,7 @@ extends Control
 signal leave_lobby
 
 const PLAYER_PROFILE = preload("res://scenes/Menus/profile_button.tscn")
-@onready var profile_container: VBoxContainer = $MarginContainer/MarginContainer2/MarginContainer/VBoxContainer
+@onready var profile_container: VBoxContainer = $MarginContainer/MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer
 @onready var leave_button: Button = $"MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Leave Button"
 @onready var customize_button: Button = $"MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Customize Button"
 
@@ -15,7 +15,7 @@ func _ready():
 
 func on_lobby_created():
 	var new_profile := PLAYER_PROFILE.instantiate()
-	new_profile.text = str(Steam.getFriendPersonaName(NetworkingScript.players_on_server[0]))
+	new_profile.text = str(Steam.getPersonaName()) + " (HOST)"
 	profile_container.add_child(new_profile)
 	ready_yet = true
 

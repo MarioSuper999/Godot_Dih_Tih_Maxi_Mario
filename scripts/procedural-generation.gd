@@ -98,11 +98,11 @@ func genPath(length):
 		else:
 			branch_index = -2
 			branch_backoff = 0
-			emit_signal("generation_finished")
 		i+=1
 	#for f in range(len(spawned_boxes)):
 		#print(spawned_boxes[f].position)
 		#print(boxes_size[f])
+	emit_signal("generation_finished")
 	is_generating = false
 
 func get_new_pos(pos, size, prev_size, attempt):
@@ -147,14 +147,16 @@ func collides(new_box) ->  bool:
 func more_path(body):
 	#print("got message body entered")
 	if body == player:
-		if	spawned_boxes[-1].get_node("Area3D").body_entered.is_connected(more_path):
-				spawned_boxes[-1].get_node("Area3D").body_entered.disconnect(more_path)
-		genPath(5)
+		if	spawned_boxes[-5].get_node("Area3D").body_entered.is_connected(more_path):
+				spawned_boxes[-5].get_node("Area3D").body_entered.disconnect(more_path)
+		genPath(10)
 
 func connect_signals():
-	if spawned_boxes[-2].get_node("Area3D").body_entered.is_connected(more_path):
-		spawned_boxes[-2].get_node("Area3D").body_entered.disconnect(more_path)
-	spawned_boxes[-1].get_node("Area3D").body_entered.connect(more_path)
+	if len(spawned_boxes) > 6:
+		if spawned_boxes[-6].get_node("Area3D").body_entered.is_connected(more_path):
+			spawned_boxes[-6].get_node("Area3D").body_entered.disconnect(more_path)
+		if not spawned_boxes[-5].get_node("Area3D").body_entered.is_connected(more_path):
+			spawned_boxes[-5].get_node("Area3D").body_entered.connect(more_path)
 
 
 

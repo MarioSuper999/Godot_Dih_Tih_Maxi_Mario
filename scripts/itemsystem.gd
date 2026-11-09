@@ -2,6 +2,7 @@ extends Area3D
 
 @export var floatingimage : Image
 @export var mesh : Mesh
+@export var icon : Image
 
 @export_group("Scaling")
 

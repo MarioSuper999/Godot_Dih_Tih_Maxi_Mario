@@ -50,7 +50,7 @@ func place_box(pos_new, new_box, branch_index):
 			return false
 		var prev_box = spawned_boxes[branch_index].position
 		var prev_size = boxes_size[branch_index]
-		if not await collides(new_box):
+		if not collides(new_box):
 			return true
 		else:
 			pos_new = get_new_pos(prev_box, new_box.get_node("CollisionShape3D").shape.size, prev_size, attempts)

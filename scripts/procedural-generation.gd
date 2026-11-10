@@ -3,7 +3,7 @@ signal generation_finished
 const BOUNDARY_X := 1
 const BOUNDARY_Y := 1
 const BOUNDARY_Z := 1
-@onready var box = preload("res://prefabs/rooms/box.tscn")
+@onready var box_template = preload("res://prefabs/rooms/box_template.tscn")
 @onready var player = $"../Player"
 var spawned_boxes: Array = []
 var boxes_size: Array = []
@@ -11,31 +11,22 @@ var boxes_size: Array = []
 var is_generating = false
 
 func _ready() -> void:
-	make_box()	
-	#genPath(pathlen)
+	get_box()	
+	genPath(pathlen)
 	await $"..".ready
 	
 
-func make_box():
-		var new_box = box.instantiate()
-		add_child(new_box)
-		var size = new_box.get_room_type()
-		var collision_node = new_box.get_node("CollisionShape3D")
-		collision_node.shape = collision_node.shape.duplicate()
-		collision_node.shape.size = size 
-		
-		var mesh_node = new_box.get_node("MeshInstance3D")
-		mesh_node.scale = size
-		
-		var area_node = new_box.get_node("Area3D")
-		area_node.scale = size + Vector3(0,5,0)
-		
-	
-		spawned_boxes.append(new_box)
-		boxes_size.append(size)
-		if len(spawned_boxes) > 1 :
-			connect_signals()
-		return new_box
+func get_box():
+	var new_box = box_template.instantiate()
+	add_child(new_box)
+	var result = new_box.make_box()
+	var size = result[0]
+	spawned_boxes.append(new_box)
+	boxes_size.append(size)
+	if len(spawned_boxes) > 1 :
+		connect_signals()
+	return new_box
+
 
 
 func place_box(pos_new, new_box, branch_index):
@@ -74,7 +65,7 @@ func genPath(length):
 	var branch_backoff = 0
 	var i = 0
 	while i < length:
-		new_box = make_box()
+		new_box = get_box()
 		
 
 		

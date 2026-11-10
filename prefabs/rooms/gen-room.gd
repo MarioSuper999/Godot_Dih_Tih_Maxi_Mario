@@ -10,7 +10,7 @@ var types = ["square", "long"]
 func _ready() -> void:
 	pass # Replace with function body.
 
-func get_room_type():
+func make_box():
 	var size = Vector3()
 	var dir = ["z","x"].pick_random()
 	var room_type = room_dict[types.pick_random()]
@@ -21,8 +21,18 @@ func get_room_type():
 		size = Vector3(short_side,7.5,short_side * randi_range(room_type[1].x,room_type[1].y))
 	else:
 		print("fuck you")
-	return size
+	var collision_node = self.get_node("CollisionShape3D")
+	collision_node.shape = collision_node.shape.duplicate()
+	collision_node.shape.size = size 
 	
+	var mesh_node = self.get_node("MeshInstance3D")
+	mesh_node.scale = size
+	
+	var area_node = self.get_node("Area3D")
+	area_node.scale = size + Vector3(0,5,0)
+	
+	return [size, dir, room_type]
+
 	
 
 

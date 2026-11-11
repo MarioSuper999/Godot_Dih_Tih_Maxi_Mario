@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized() * move_speed
-		#var direction := global_position.direction_to(next_location)
+		var direction := global_position.direction_to(next_location)
 		
 		velocity = velocity.move_toward(new_velocity, 0.33 * delta * 20)
 		#print(nav_agent.is_navigation_finished(),next_location,current_location)

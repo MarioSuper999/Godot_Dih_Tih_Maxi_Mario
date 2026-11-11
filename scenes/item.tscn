@@ -11,6 +11,8 @@ metadata/__load_path__ = "res://prefabs/pngfind.com-dot-png-997308.png"
 height = 1.4714355
 radius = 7.963867
 
+[sub_resource type="BoxMesh" id="BoxMesh_k5xjo"]
+
 [sub_resource type="ImageTexture" id="ImageTexture_w5h6m"]
 
 [node name="Item" type="Area3D" unique_id=1793539674 node_paths=PackedStringArray("itemtxt", "textball")]
@@ -28,6 +30,7 @@ shape = SubResource("CylinderShape3D_lbhrr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=700442205]
 transform = Transform3D(0.59, 0, 0, 0, -2.5789719e-08, -0.59, 0, 0.59, -2.5789719e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_k5xjo")
 
 [node name="itemtext" type="Label3D" parent="." unique_id=2011629340]
 unique_name_in_owner = true

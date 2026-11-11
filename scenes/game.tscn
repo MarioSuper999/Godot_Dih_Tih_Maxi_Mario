@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c5c4y6ce5ppea" path="res://scripts/Game.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://dvwyvaecqguvv" path="res://scripts/uicontrol.gd" id="2_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://d2xrw5swb5xo0" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ci3usjehu5y10" path="res://scenes/item.tscn" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://bamyao7j7la52" path="res://scripts/procedural-generation.gd" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://blf0cik0qu4j8" path="res://scenes/Inventar.tscn" id="6_p57ef"]
+[ext_resource type="Image" uid="uid://bwb5oplacr7lm" path="res://assets/shared image.jpeg" id="8_gee14"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -58,7 +61,19 @@ shadow_enabled = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=921410912]
 navigation_mesh = SubResource("NavigationMesh_yj7vy")
 script = ExtResource("5_iywne")
-pathlen = 3
+pathlen = 10
+
+[node name="Da_Monsta" parent="." unique_id=1269639112 instance=ExtResource("2_lnu2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.538372, 0)
+
+[node name="Player" parent="." unique_id=1196026899 instance=ExtResource("2_yqjtg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7730637, 4.621416, 8.801432)
+
+[node name="Items" type="Node3D" parent="." unique_id=1989364289]
+
+[node name="Item" parent="Items" unique_id=1793539674 instance=ExtResource("4_lbhrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7809863, 4.591441, 3.7128124)
+icon = ExtResource("8_gee14")
 
 [node name="SpawnPoint" type="Node3D" parent="." unique_id=865819102]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2065554, 5.994895, 6.387333)

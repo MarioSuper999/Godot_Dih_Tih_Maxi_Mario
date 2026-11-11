@@ -12,13 +12,14 @@ const PLAYER_PROFILE = preload("res://scenes/Menus/profile_button.tscn")
 var ready_yet : bool = false
 
 func _ready():
+	Steam.lobby_created.connect(the_lobby_created)
 	handle_connecting_signals()
 
-func on_lobby_created():
+func the_lobby_created() -> void:
+	print("ready")
 	var new_profile := PLAYER_PROFILE.instantiate()
 	new_profile.text = str(Steam.getPersonaName()) + " (HOST)"
 	profile_container.add_child(new_profile)
-	print("ready")
 	ready_yet = true
 
 func on_player_joined():
@@ -39,5 +40,4 @@ func on_customize_pressed():
 func handle_connecting_signals() -> void:
 	leave_button.button_up.connect(on_leave_pressed)
 	customize_button.button_up.connect(on_customize_pressed)
-	NetworkingScript.ready_to_call.connect(on_player_joined)
-	NetworkingScript.lobby_created.connect(on_lobby_created)
+#	NetworkingScript.ready_to_call.connect(on_player_joined)

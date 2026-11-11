@@ -1,7 +1,6 @@
 extends Node
 
 signal lobby_created
-signal ready_to_call
 
 const LOBBY_TYPE := Steam.LobbyType.LOBBY_TYPE_FRIENDS_ONLY
 const MAX_MEMBERS := 6
@@ -14,6 +13,7 @@ var players_on_server : Array = []
 
 
 func _ready() -> void:
+	lobby_created.emit()
 	Steam.lobby_created.connect(on_lobby_created)
 	Steam.lobby_joined.connect(on_lobby_joined)
 	Steam.p2p_session_request.connect(on_p2p_session_request)
@@ -26,7 +26,6 @@ func host_lobby():
 	if current_lobby_id == 0:
 		is_host = true
 		Steam.createLobby(LOBBY_TYPE,MAX_MEMBERS)
-		
 
 func on_lobby_created(connect : int, lobby_id : int) -> void:
 	if connect == Steam.RESULT_OK:
@@ -35,8 +34,8 @@ func on_lobby_created(connect : int, lobby_id : int) -> void:
 		Steam.setLobbyJoinable(lobby_id, true)
 		Steam.setLobbyData(lobby_id,"name","hmm")
 		print("CREATED LOBBY: ", lobby_id)
-		var set_relay : bool = Steam.allowP2PPacketRelay(true)
 		lobby_created.emit()
+		var set_relay : bool = Steam.allowP2PPacketRelay(true)
 
 func join_lobby(lobby_id):
 	Steam.joinLobby(lobby_id)
@@ -47,7 +46,6 @@ func on_lobby_joined(lobby_id : int, _permissions : int, _locked : bool, respons
 			return
 		current_lobby_id = lobby_id
 		make_p2p_handshake()
-		ready_to_call.emit()
 
 func on_lobby_left():
 	if is_host:
@@ -59,7 +57,6 @@ func on_lobby_left():
 		if steam_id["steam_id"] != Steam.getSteamID():
 			Steam.closeP2PSessionWithUser(steam_id["steam_id"])
 	current_lobby_id = 0
-
 
 func get_lobby_members():
 	players_on_server.clear()
@@ -102,7 +99,6 @@ func read_p2p_packet():
 		var packet_sender : int = this_packet["remote_steam_id"]
 		var packet_code : PackedByteArray = this_packet["data"]
 		var readable_data : Dictionary = bytes_to_var(packet_code)
-		
 		if readable_data.has("message"):
 			match readable_data["message"]:
 				"handshake":

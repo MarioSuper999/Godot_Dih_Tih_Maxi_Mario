@@ -15,6 +15,10 @@ run/main_scene="uid://hr4pmvhv3pf"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+NetworkingScript="*uid://c0itb1ibu00y6"
+
 [display]
 
 window/size/viewport_width=1920
@@ -87,3 +91,4 @@ drop={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"

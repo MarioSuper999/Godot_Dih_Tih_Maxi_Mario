@@ -1,7 +1,6 @@
 class_name MainMenu
 extends Control
 
-
 @onready var host_button: Button = $"MarginContainer/HBoxContainer/VBoxContainer/Host Button"
 @onready var join_button: Button = $"MarginContainer/HBoxContainer/VBoxContainer/Join Button"
 @onready var customize_button: Button = $"MarginContainer/HBoxContainer/VBoxContainer/Customize Button"
@@ -32,7 +31,6 @@ func on_host_pressed() -> void:
 func on_join_pressed() -> void:
 	Steam.activateGameOverlay()
 
-	
 func on_customize_pressed() -> void:
 	pass
 	

@@ -13,7 +13,6 @@ var players_on_server : Array = []
 
 
 func _ready() -> void:
-	lobby_created.emit()
 	Steam.lobby_created.connect(on_lobby_created)
 	Steam.lobby_joined.connect(on_lobby_joined)
 	Steam.p2p_session_request.connect(on_p2p_session_request)

@@ -12,15 +12,18 @@ func _ready() -> void:
 
 func make_box():
 	var size = Vector3()
-	var dir = ["z","x"].pick_random()
+	var axis = ["z","x"].pick_random()
+	var dir = [1,-1].pick_random()
 	var room_type = room_dict[types.pick_random()]
 	var short_side = randi_range(room_type[0].x,room_type[0].y)
-	if dir == "z":
+	if axis == "z":
 		size = Vector3(short_side * randi_range(room_type[1].x,room_type[1].y),7.5,short_side)
-	elif dir == "x":
+	elif axis == "x":
 		size = Vector3(short_side,7.5,short_side * randi_range(room_type[1].x,room_type[1].y))
 	else:
 		print("fuck you")
+		#del_system32()
+		return
 	var collision_node = self.get_node("CollisionShape3D")
 	collision_node.shape = collision_node.shape.duplicate()
 	collision_node.shape.size = size 
@@ -31,7 +34,7 @@ func make_box():
 	var area_node = self.get_node("Area3D")
 	area_node.scale = size + Vector3(0,5,0)
 	
-	return [size, dir, room_type]
+	return [size, axis, dir, room_type]
 
 	
 

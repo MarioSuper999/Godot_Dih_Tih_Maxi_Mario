@@ -97,10 +97,7 @@ func genPath(length):
 	emit_signal("generation_finished")
 	is_generating = false
 
-func get_new_pos(pos, size, prev_size, attempt):
-	var dirs = ["x_negative", "x_positive", "z_negative", "z_positive"]
-	dirs.shuffle()
-	var dir = dirs[attempt]
+func get_new_pos(pos, size, prev_size, attempt, dir, axis):
 	var pos_new = pos
 	var offsetx = (size.x/2) + (prev_size.x/ 2)
 	var offsetz = (size.z/2) + (prev_size.z/ 2) 

@@ -19,13 +19,12 @@ func on_lobby_created():
 	profile_container.add_child(new_profile)
 
 func on_player_joined():
-	var lobby_members = NetworkingScript.get_lobby_members()
-	if not lobby_members.size() > 0:
-		print(NetworkingScript.players_on_server)
-		var new_profile := PLAYER_PROFILE.instantiate()
-		var steam_dictionary : Dictionary = NetworkingScript.players_on_server[NetworkingScript.players_on_server.size()-1]
-		new_profile.text = str(Steam.getFriendPersonaName(steam_dictionary["steam_id"]))
-		profile_container.add_child(new_profile)
+	NetworkingScript.get_lobby_members()
+	print(NetworkingScript.players_on_server)
+	var new_profile := PLAYER_PROFILE.instantiate()
+	var steam_dictionary : Dictionary = NetworkingScript.players_on_server[NetworkingScript.players_on_server.size()-1]
+	new_profile.text = str(Steam.getFriendPersonaName(steam_dictionary["steam_id"]))
+	profile_container.add_child(new_profile)
 	if NetworkingScript.players_on_server.size() > 5:
 		invite_button.queue_free()
 

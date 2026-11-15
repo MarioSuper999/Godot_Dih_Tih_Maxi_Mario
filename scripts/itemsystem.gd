@@ -3,6 +3,7 @@ extends Area3D
 @export var floatingimage : Image
 @export var mesh : Mesh
 @export var icon : Image
+@export var itemname : String
 
 @export_group("Scaling")
 
@@ -18,7 +19,7 @@ var charnear : bool
 var pbody : Node3D
 var cant_pickup : bool
 var picked_up := false
-
+signal itempickup
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,6 +53,8 @@ func _process(_delta: float) -> void:
 				$itemtext.visible = false
 				$textballl.visible = false
 				picked_up = true
+				emit_signal("itempickup", icon, itemname)
+		
 		if Input.is_action_just_pressed("drop") and picked_up == true:
 			reparent($"/root/Game/Items")
 			connect("body_exited",_on_body_exited)
@@ -59,7 +62,6 @@ func _process(_delta: float) -> void:
 			$itemtext.visible = true
 			$textballl.visible = true
 			picked_up = false
-
 
 
 func _on_body_entered(body: Node3D) -> void:

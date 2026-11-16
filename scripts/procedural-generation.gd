@@ -42,6 +42,8 @@ func place_box(box, branch_index, results):
 	
 	var prev_size = boxes_size[branch_index]
 	get_new_pos(branch_index, size, prev_size, axis, box)
+	return true
+	
 	#return false
 	
 
@@ -92,7 +94,7 @@ func get_new_pos(branch_index, size, prev_size, axis, box):
 	elif axis == "z":
 		box.position = pos_old + Vector3(0,0,offsetz * dir)
 	if collides(box):
-		dir *= -1
+		dir = dir * -1
 		if axis == "x":
 			box.position = pos_old + Vector3(offsetx * dir,0,0)
 		elif axis == "z":
@@ -129,7 +131,7 @@ func more_path(body):
 	if body == player:
 		if	spawned_boxes[-5].get_node("Area3D").body_entered.is_connected(more_path):
 				spawned_boxes[-5].get_node("Area3D").body_entered.disconnect(more_path)
-		genPath(10)
+		genPath(pathlen)
 
 func connect_signals():
 	if len(spawned_boxes) > 6:

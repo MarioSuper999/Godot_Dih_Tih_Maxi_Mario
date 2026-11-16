@@ -6,4 +6,4 @@ Da Big Idea:
   But you are not alone in this wicked maze.
   You will be watched.
   You will be stalked.
-  Together with friends you can explore the depths of ⴴ⵿ᾩṬΓé¼ᱠⵣᾦᘭᭃ¥ðŸ and find an escape of this hellish landscape.
+  Together with friends you can explore the depths of ṬΓé¼ᱠⵣᾦᘭᭃ¥ðŸ and find and find a way out of this hellish landscape.

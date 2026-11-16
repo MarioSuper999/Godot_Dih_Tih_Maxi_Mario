@@ -17,63 +17,48 @@ func _ready() -> void:
 	
 
 func get_box():
-	var new_box = box_template.instantiate()
-	add_child(new_box)
-	var result = new_box.make_box()
+	var box = box_template.instantiate()
+	add_child(box)
+	var result = box.box_innit()
 	var size = result[0]
-	spawned_boxes.append(new_box)
+	spawned_boxes.append(box)
 	boxes_size.append(size)
 	if len(spawned_boxes) > 1 :
 		connect_signals()
-	return new_box
+	return [box, result]
 
 
 
-func place_box(pos_new, new_box, branch_index):
-	var attempts = 0
-	new_box.position += pos_new
-	while attempts <4:
-		await get_tree().physics_frame
-		if not is_instance_valid(spawned_boxes[branch_index]):
-			new_box.queue_free()
-			spawned_boxes.pop_back()
-			boxes_size.pop_back()
-			return false
-		var prev_box = spawned_boxes[branch_index].position
-		var prev_size = boxes_size[branch_index]
-		if not collides(new_box):
-			return true
-		else:
-			pos_new = get_new_pos(prev_box, new_box.get_node("CollisionShape3D").shape.size, prev_size, attempts)
-			attempts += 1
-			new_box.position = pos_new
-	new_box.queue_free()
-	spawned_boxes.pop_back()
-	boxes_size.pop_back()
-	return false
+func place_box(box, branch_index, results):
+	
+	await get_tree().physics_frame
+	if not is_instance_valid(spawned_boxes[branch_index]):
+		box.queue_free()
+		spawned_boxes.pop_back()
+		boxes_size.pop_back()
+		return false
+	var axis = results[1]
+	var size = results[0]
+	
+	var prev_size = boxes_size[branch_index]
+	get_new_pos(branch_index, size, prev_size, axis, box)
+	#return false
 	
 
 func genPath(length):
 	if is_generating:
 		return
 	is_generating = true
-	var new_box = spawned_boxes[0]
-	var size= Vector3()
 	#print("genpath")
 	#default branch index position of box -> box meaning the box which you try to put your new box next to
 	var branch_index = -2
 	var branch_backoff = 0
 	var i = 0
 	while i < length:
-		new_box = get_box()
-		
-
-		
-		var prev_size = boxes_size [branch_index +1 ]
-		
-		var pos_new = get_new_pos(spawned_boxes[branch_index + 1].position, size, prev_size,randi_range(0,3))
-		
-		if not await place_box(pos_new, new_box, branch_index):
+		var info = get_box()
+		var box = info[0]
+		var results = info[1]
+		if not await place_box(box, branch_index, results):
 			if abs(branch_index) <= len(spawned_boxes):
 				if abs(branch_index)+ 1 + 3* branch_backoff <= len(spawned_boxes):
 					branch_index -= 1 + 3* branch_backoff
@@ -97,37 +82,43 @@ func genPath(length):
 	emit_signal("generation_finished")
 	is_generating = false
 
-func get_new_pos(pos, size, prev_size, attempt, dir, axis):
-	var pos_new = pos
+func get_new_pos(branch_index, size, prev_size, axis, box):
+	var pos_old = spawned_boxes[branch_index].position
+	var dir = [-1,1].pick_random()
 	var offsetx = (size.x/2) + (prev_size.x/ 2)
 	var offsetz = (size.z/2) + (prev_size.z/ 2) 
-	if dir == "x_negative":
-		pos_new = pos + Vector3(-offsetx ,0,0)
-	elif dir == "x_positive":
-		pos_new = pos + Vector3(offsetx,0,0)		
-	elif dir == "z_negative":
-		pos_new = pos + Vector3(0,0, -offsetz)
-	elif dir == "z_positive":
-		pos_new = pos + Vector3(0,0,offsetz)
-	return pos_new
+	if axis == "x":
+		box.position = pos_old + Vector3(offsetx * dir,0,0)
+	elif axis == "z":
+		box.position = pos_old + Vector3(0,0,offsetz * dir)
+	if collides(box):
+		dir *= -1
+		if axis == "x":
+			box.position = pos_old + Vector3(offsetx * dir,0,0)
+		elif axis == "z":
+			box.position = pos_old + Vector3(0,0,offsetz * dir)
+	if collides(box):
+		box.queue_free()
+		spawned_boxes.pop_back()
+		boxes_size.pop_back()
 
 
-func collides(new_box) ->  bool:
-	var shape_node = new_box.get_node_or_null("Area3D/CollisionShape3D")
+func collides(box) ->  bool:
+	var shape_node = box.get_node_or_null("Area3D/CollisionShape3D")
 	if not shape_node:
 		#print("k")
 		return false
 		
-	var space_state = new_box.get_world_3d().direct_space_state
+	var space_state = box.get_world_3d().direct_space_state
 	
 	var query = PhysicsShapeQueryParameters3D.new()
 	query.shape = shape_node.shape
 	query.transform = shape_node.global_transform
-	query.exclude = [new_box.get_rid()]
+	query.exclude = [box.get_rid()]
 	var results = space_state.intersect_shape(query)
 	if results.size() > 0:
 		#print("collides with", results)
-		#print(new_box.position)
+		#print(box.position)
 		return true
 	#print("no collision")
 	return false

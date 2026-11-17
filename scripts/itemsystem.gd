@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 				$itemtext.visible = false
 				$textballl.visible = false
 				picked_up = true
-				emit_signal("itempickup", icon, itemname)
+				emit_signal("itempickup", icon, itemname, picked_up	)
 		
 		if Input.is_action_just_pressed("drop") and picked_up == true:
 			reparent($"/root/Game/Items")
@@ -62,6 +62,7 @@ func _process(_delta: float) -> void:
 			$itemtext.visible = true
 			$textballl.visible = true
 			picked_up = false
+			emit_signal("itempickup", icon, itemname, picked_up)
 
 
 func _on_body_entered(body: Node3D) -> void:

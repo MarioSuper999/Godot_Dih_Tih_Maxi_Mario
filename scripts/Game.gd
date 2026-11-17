@@ -27,5 +27,8 @@ func _openui(state):
 	for child in $Items.get_children():
 		child._change_pickup(state)
 
-func _itempickedup(icon,itemname):
-	$"UI/Inventar/Panel4/Rhandslot".texture_normal = ImageTexture.create_from_image(icon)
+func _itempickedup(icon,itemname,pord):
+	if pord:
+		$"UI/Inventar/Panel4/Rhandslot/TextureRect".texture = ImageTexture.create_from_image(icon)
+	else:
+		$"UI/Inventar/Panel4/Rhandslot/TextureRect".texture = null

@@ -30,7 +30,6 @@ func get_box():
 
 
 func place_box(box, branch_index, results):
-	
 	await get_tree().physics_frame
 	if not is_instance_valid(spawned_boxes[branch_index]):
 		box.queue_free()
@@ -41,8 +40,11 @@ func place_box(box, branch_index, results):
 	var size = results[0]
 	
 	var prev_size = boxes_size[branch_index]
-	get_new_pos(branch_index, size, prev_size, axis, box)
-	return true
+	if not get_new_pos(branch_index, size, prev_size, axis, box):
+		print("k")
+		return true
+	print("i")
+	return false
 	
 	#return false
 	
@@ -62,17 +64,19 @@ func genPath(length):
 		var results = info[1]
 		if not await place_box(box, branch_index, results):
 			if abs(branch_index) <= len(spawned_boxes):
-				if abs(branch_index)+ 1 + 3* branch_backoff <= len(spawned_boxes):
-					branch_index -= 1 + 3* branch_backoff
-				elif abs(branch_index)+ 1 <= len(spawned_boxes):
-					branch_index -= 1
-				else:
-					branch_index = - len(spawned_boxes) 
+				branch_index -= 1
+				#if abs(branch_index)+ 1 + 3* branch_backoff <= len(spawned_boxes):
+					#branch_index -= 1 + 3* branch_backoff
+				#elif abs(branch_index)+ 1 <= len(spawned_boxes):
+					#branch_index -= 1
+				#else:
+				#branch_index = - len(spawned_boxes) 
 				#print("new Branch at:", branch_index)
 				branch_backoff += 1
 				i -= 1
+				print("f")
 			else:
-				#print("this path is not spawnable")
+				print("this path is not spawnable")
 				break
 		else:
 			branch_index = -2
@@ -85,7 +89,7 @@ func genPath(length):
 	is_generating = false
 
 func get_new_pos(branch_index, size, prev_size, axis, box):
-	var pos_old = spawned_boxes[branch_index].position
+	var pos_old = spawned_boxes[-2].position
 	var dir = [-1,1].pick_random()
 	var offsetx = (size.x/2) + (prev_size.x/ 2)
 	var offsetz = (size.z/2) + (prev_size.z/ 2) 
@@ -109,7 +113,7 @@ func collides(box) ->  bool:
 	var shape_node = box.get_node_or_null("Area3D/CollisionShape3D")
 	if not shape_node:
 		#print("k")
-		return false
+		return true
 		
 	var space_state = box.get_world_3d().direct_space_state
 	

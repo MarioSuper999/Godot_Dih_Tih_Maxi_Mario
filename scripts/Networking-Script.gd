@@ -49,6 +49,8 @@ func on_lobby_joined(lobby_id : int, permissions : int, locked : bool, response 
 		if not current_lobby_id == lobby_id:
 			current_lobby_id = lobby_id
 			get_tree().change_scene_to_file("res://scenes/Menus/multiplayer_lobby.tscn")
+		if Steam.getLobbyOwner(lobby_id) != Steam.getSteamID():
+			print("joined as a client! Lobby ID: ", lobby_id)
 
 func on_lobby_left():
 	if is_host:
@@ -75,7 +77,6 @@ func _on_peer_connected(id : int):
 	if steam_peer:
 		var player_steam_id = steam_peer.get_steam_id_for_peer_id(id)
 		ready_to_call.emit()
-		print("hi mwommy")
 
 func on_join_requested(lobby_id : int, steam_id : int) -> void:
 	Steam.joinLobby(lobby_id)

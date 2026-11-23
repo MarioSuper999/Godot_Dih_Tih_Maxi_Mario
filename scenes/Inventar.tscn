@@ -2,12 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://cq3jsk18kpy6r" path="res://assets/pngegg(1).png" id="1_rsc1w"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vt5hi"]
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
 [node name="Inventar" type="Control" unique_id=950159955]
 custom_maximum_size = Vector2(0, 0)
 layout_mode = 3
@@ -42,22 +36,21 @@ offset_right = 512.0
 offset_bottom = 746.0
 scale = Vector2(0.6, 0.6)
 
-[node name="Panel" type="Panel" parent="Panel4" unique_id=1140430758]
-z_index = 1
+[node name="Rhandslot" type="Button" parent="Panel4" unique_id=1699056484]
 layout_mode = 0
 offset_left = 123.0
 offset_top = 315.0
 offset_right = 163.0
 offset_bottom = 355.0
 scale = Vector2(1.56, 1.56)
-theme_override_styles/panel = SubResource("StyleBoxFlat_vt5hi")
 
-[node name="Button" type="Button" parent="Panel4/Panel" unique_id=490112307]
+[node name="TextureRect" type="TextureRect" parent="Panel4/Rhandslot" unique_id=559779087]
+custom_maximum_size = Vector2(40, 40)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel2" type="Panel" parent="Panel4" unique_id=87163390]
+[node name="Lhandslot" type="TextureButton" parent="Panel4" unique_id=1176855055]
 z_index = 1
 layout_mode = 0
 offset_left = 330.0
@@ -65,15 +58,8 @@ offset_top = 315.0
 offset_right = 370.0
 offset_bottom = 355.0
 scale = Vector2(1.56, 1.56)
-theme_override_styles/panel = SubResource("StyleBoxFlat_vt5hi")
 
-[node name="Button2" type="Button" parent="Panel4/Panel2" unique_id=533594654]
-layout_mode = 0
-offset_left = -1.6302127e-05
-offset_right = 39.999985
-offset_bottom = 40.0
-
-[node name="Panel3" type="Panel" parent="Panel4" unique_id=1724562904]
+[node name="Backslot" type="TextureButton" parent="Panel4" unique_id=1741446955]
 z_index = 1
 layout_mode = 0
 offset_left = 222.0
@@ -81,14 +67,3 @@ offset_top = 205.0
 offset_right = 262.0
 offset_bottom = 245.00002
 scale = Vector2(1.75, 1.75)
-theme_override_styles/panel = SubResource("StyleBoxFlat_vt5hi")
-
-[node name="Button3" type="Button" parent="Panel4/Panel3" unique_id=1715120068]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 39.999996
-
-[node name="CenterContainer" type="CenterContainer" parent="Panel4" unique_id=1238808428]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0

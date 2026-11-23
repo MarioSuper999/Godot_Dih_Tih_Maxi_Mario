@@ -11,6 +11,8 @@ var bake_finished := false
 func _ready() -> void:
 	nav_region.connect("generation_finished", on_generation)
 	uicontrol.connect("uiopen", _openui)
+	for i in $Items.get_children():
+		i.connect("itempickup", _itempickedup)
 func on_generation():
 	#if not bake_finished:
 		#return
@@ -24,3 +26,9 @@ func _physics_process(_delta: float):
 func _openui(state):
 	for child in $Items.get_children():
 		child._change_pickup(state)
+
+func _itempickedup(icon,itemname,pord):
+	if pord:
+		$"UI/Inventar/Panel4/Rhandslot/TextureRect".texture = ImageTexture.create_from_image(icon)
+	else:
+		$"UI/Inventar/Panel4/Rhandslot/TextureRect".texture = null

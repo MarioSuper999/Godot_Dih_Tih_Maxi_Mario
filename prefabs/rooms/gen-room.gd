@@ -1,8 +1,8 @@
 extends StaticBody3D
 var room_dict = {
 	# example = [Vector2(min_short_side,max_short_side), Vector2(min_ration,max_ratio)]
-	square = [Vector2(50, 100), Vector2(1,1)],
-	long = [Vector2(20, 50), Vector2(4,6)],
+	square = [Vector2(25, 50), Vector2(1,1)],
+	long = [Vector2(10, 25), Vector2(4,6)],
 }
 var types = ["square", "long"]
 var room_type = room_dict[types.pick_random()]
@@ -12,7 +12,9 @@ var axis = ["z","x"].pick_random()
 func _ready() -> void:
 	pass # Replace with function body.
 
-func box_innit():
+func box_innit(type):
+	if not type == "any":
+		room_type = room_dict[type]
 	var size = Vector3()
 	var dir = [1,-1].pick_random()
 	var short_side = randi_range(room_type[0].x,room_type[0].y)

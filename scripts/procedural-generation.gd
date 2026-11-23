@@ -11,19 +11,20 @@ var boxes_size: Array = []
 var is_generating = false
 
 func _ready() -> void:
-	get_box()	
+	get_box("square")	
 	genPath(pathlen)
 	await $"..".ready
 	
 
-func get_box():
+func get_box(type):
 	var box = box_template.instantiate()
 	add_child(box)
-	var result = box.box_innit()
+	var result = box.box_innit(type)
 	var size = result[0]
 	spawned_boxes.append(box)
 	boxes_size.append(size)
 	if len(spawned_boxes) > 1 :
+		box.position = Vector3(100,0,100)
 		connect_signals()
 	return [box, result]
 
@@ -40,11 +41,11 @@ func place_box(box, branch_index, results):
 	var size = results[0]
 	
 	var prev_size = boxes_size[branch_index]
-	if not get_new_pos(branch_index, size, prev_size, axis, box):
+	if not move_box(branch_index, size, prev_size, axis, box):
 		print("k")
-		return true
+		return false
 	print("i")
-	return false
+	return true
 	
 	#return false
 	
@@ -55,39 +56,41 @@ func genPath(length):
 	is_generating = true
 	#print("genpath")
 	#default branch index position of box -> box meaning the box which you try to put your new box next to
-	var branch_index = -2
-	var branch_backoff = 0
-	var i = 0
+	var branch_index := -2
+	var branch_backoff := 0
+	var i := 0
+	var boxes_attempted := 0
 	while i < length:
-		var info = get_box()
+		var info = get_box("any")
 		var box = info[0]
 		var results = info[1]
-		if not await place_box(box, branch_index, results):
-			if abs(branch_index) <= len(spawned_boxes):
+		var is_placed = await place_box(box, branch_index, results)
+		if not is_placed and boxes_attempted > 5:
+			if abs(branch_index) < len(spawned_boxes):
 				branch_index -= 1
-				if abs(branch_index)+ 1 + 3* branch_backoff <= len(spawned_boxes):
-					branch_index -= 1 + 3* branch_backoff
-					branch_backoff += 1
-				elif abs(branch_index)+ 1 <= len(spawned_boxes):
-					branch_index -= 1
-				else:
-					branch_index = - len(spawned_boxes) 
-					print("new Branch at:", branch_index)
+			#if abs(branch_index)+ 1 + 1 * branch_backoff <= len(spawned_boxes):
+				#branch_index -= 1 + 1*  branch_backoff
+				#branch_backoff += 1
+			#elif abs(branch_index) < len(spawned_boxes):
+				#branch_index -= 1
 			else:
 				print("this path is not spawnable")
 				break
-			i -= 1
-		else:
+		elif boxes_attempted > 5:
 			branch_index = -2
 			branch_backoff = 0
-		i+=1
+			boxes_attempted = 0
+		else:
+			boxes_attempted += 1
+		if is_placed:
+			i+=1
 	#for f in range(len(spawned_boxes)):
 		#print(spawned_boxes[f].position)
 		#print(boxes_size[f])
 	emit_signal("generation_finished")
 	is_generating = false
 
-func get_new_pos(branch_index, size, prev_size, axis, box):
+func  move_box(branch_index, size, prev_size, axis, box):
 	var pos_old = spawned_boxes[branch_index].position
 	var dir = [-1,1].pick_random()
 	var offsetx = (size.x/2) + (prev_size.x/ 2)
@@ -115,7 +118,7 @@ func collides(box) ->  bool:
 	if not shape_node:
 		#print("k")
 		return true
-		
+	
 	var space_state = box.get_world_3d().direct_space_state
 	
 	var query = PhysicsShapeQueryParameters3D.new()

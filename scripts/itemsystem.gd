@@ -1,4 +1,4 @@
-extends Area3D
+extends RigidBody3D
 
 @export var floatingimage : Image
 @export var mesh : Mesh
@@ -29,10 +29,11 @@ func _ready() -> void:
 		%textballl.texture = ImageTexture.create_from_image(floatingimage)
 	%itemtext.text = InputMap.action_get_events("pickup")[0].as_text()[0]
 	charnear = true
-	$ItemPickupRange.shape.radius = distancetoItem
+	$"Area3D/ItemPickupRange".shape.radius = distancetoItem
 	$MeshInstance3D.mesh = mesh
+	$ANmedif.shape = mesh.create_trimesh_shape()
 	
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,43 +43,49 @@ func _process(_delta: float) -> void:
 		itemtxt.pixel_size = distance * 0.008 * textandIconScaling
 		textball.pixel_size = distance * 0.002 * textandIconScaling
 		if charnear and Input.is_action_just_pressed("pickup") and pbody.rhand != null and not cant_pickup:
+			print(pbody.rhand)
+			print(pbody)
 			if pbody.rhand != null:
-				if is_connected("body_exited", _on_body_exited):
-					disconnect("body_exited",_on_body_exited)
-				if is_connected("body_entered", _on_body_entered):
-					disconnect("body_entered", _on_body_entered)
+				if $Area3D.is_connected("body_exited", _on_area_3d_body_exited):
+					$Area3D.disconnect("body_exited",_on_area_3d_body_exited)
+				if $Area3D.is_connected("body_entered", _on_area_3d_body_entered):
+					$Area3D.disconnect("body_entered", _on_area_3d_body_entered)
 				reparent(pbody.rhand, false)
 				global_position = pbody.rhand.global_position
 				global_rotation = pbody.rhand.global_rotation
 				$itemtext.visible = false
 				$textballl.visible = false
 				picked_up = true
-				emit_signal("itempickup", icon, itemname, picked_up	)
+				emit_signal("itempickup", icon, itemname, picked_up)
+			else:
+				print(pbody.rhand)
+
 		
 		if Input.is_action_just_pressed("drop") and picked_up == true:
 			reparent($"/root/Game/Items")
-			connect("body_exited",_on_body_exited)
-			connect("body_entered", _on_body_entered)
+			$Area3D.connect("body_exited",_on_area_3d_body_exited)
+			$Area3D.connect("body_entered", _on_area_3d_body_entered)
 			$itemtext.visible = true
 			$textballl.visible = true
 			picked_up = false
 			emit_signal("itempickup", icon, itemname, picked_up)
 
 
-func _on_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
+func _change_pickup(state):
+	cant_pickup = state
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.get_class() == "CharacterBody3D":
 		charnear = true
 		pbody = body
 		%itemtext.visible = true
 		%textballl.visible = true
 
 
-func _on_body_exited(body: Node3D) -> void:
+func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body == pbody:
 		charnear = false
 		pbody = null
 		%itemtext.visible = false
 		$textballl.visible = false
-
-func _change_pickup(state):
-	cant_pickup = state

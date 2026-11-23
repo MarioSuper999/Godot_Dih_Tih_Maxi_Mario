@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ci3usjehu5y10"]
+
+[ext_resource type="Script" uid="uid://b25mblljjlp02" path="res://scripts/itemsystem.gd" id="1_tnite"]
+
+[sub_resource type="Resource" id="Resource_l4kt4"]
+metadata/__load_path__ = "res://prefabs/pngfind.com-dot-png-997308.png"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lopi8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lbhrr"]
+height = 1.4714355
+radius = 7.963867
+
+[sub_resource type="BoxMesh" id="BoxMesh_k5xjo"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_w5h6m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6sj1v"]
+
+[node name="Item" type="RigidBody3D" unique_id=1765551447 node_paths=PackedStringArray("itemtxt", "textball")]
+script = ExtResource("1_tnite")
+floatingimage = SubResource("Resource_l4kt4")
+mesh = SubResource("CapsuleMesh_lopi8")
+distancetoItem = 2.222
+textandIconScaling = 0.666
+itemtxt = NodePath("itemtext")
+textball = NodePath("textballl")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1256067983]
+
+[node name="ItemPickupRange" type="CollisionShape3D" parent="Area3D" unique_id=677186798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25995088, 0)
+shape = SubResource("CylinderShape3D_lbhrr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=700442205]
+transform = Transform3D(0.59, 0, 0, 0, -2.5789719e-08, -0.59, 0, 0.59, -2.5789719e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_k5xjo")
+
+[node name="itemtext" type="Label3D" parent="." unique_id=2011629340]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4840084, 0)
+pixel_size = 0.05
+billboard = 1
+render_priority = 127
+
+[node name="textballl" type="Sprite3D" parent="." unique_id=1311651943]
+unique_name_in_owner = true
+transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0, 1.4840084, 0)
+billboard = 1
+texture = SubResource("ImageTexture_w5h6m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1972403778]
+shape = SubResource("BoxShape3D_6sj1v")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

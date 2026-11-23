@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ci3usjehu5y10"]
 
 [ext_resource type="Script" uid="uid://b25mblljjlp02" path="res://scripts/itemsystem.gd" id="1_tnite"]
+[ext_resource type="Image" uid="uid://bwb5oplacr7lm" path="res://assets/shared image.jpeg" id="2_s8enn"]
 
 [sub_resource type="Resource" id="Resource_l4kt4"]
 metadata/__load_path__ = "res://prefabs/pngfind.com-dot-png-997308.png"
@@ -11,26 +12,36 @@ metadata/__load_path__ = "res://prefabs/pngfind.com-dot-png-997308.png"
 height = 1.4714355
 radius = 7.963867
 
-[sub_resource type="BoxMesh" id="BoxMesh_k5xjo"]
-
 [sub_resource type="ImageTexture" id="ImageTexture_w5h6m"]
 
-[node name="Item" type="Area3D" unique_id=1793539674 node_paths=PackedStringArray("itemtxt", "textball")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s8enn"]
+
+[node name="Item" type="RigidBody3D" unique_id=1765551447 node_paths=PackedStringArray("itemtxt", "textball")]
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.003
 script = ExtResource("1_tnite")
 floatingimage = SubResource("Resource_l4kt4")
 mesh = SubResource("CapsuleMesh_lopi8")
+icon = ExtResource("2_s8enn")
+itemname = "Trackmanien"
 distancetoItem = 2.222
 textandIconScaling = 0.666
 itemtxt = NodePath("itemtext")
 textball = NodePath("textballl")
 
-[node name="ItemPickupRange" type="CollisionShape3D" parent="." unique_id=677186798]
+[node name="Area3D" type="Area3D" parent="." unique_id=1256067983]
+
+[node name="ItemPickupRange" type="CollisionShape3D" parent="Area3D" unique_id=677186798]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25995088, 0)
 shape = SubResource("CylinderShape3D_lbhrr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=700442205]
 transform = Transform3D(0.59, 0, 0, 0, -2.5789719e-08, -0.59, 0, 0.59, -2.5789719e-08, 0, 0, 0)
-mesh = SubResource("BoxMesh_k5xjo")
+mesh = SubResource("CapsuleMesh_lopi8")
 
 [node name="itemtext" type="Label3D" parent="." unique_id=2011629340]
 unique_name_in_owner = true
@@ -45,5 +56,9 @@ transform = Transform3D(0.295, 0, 0, 0, 0.295, 0, 0, 0, 0.295, 0, 1.4840084, 0)
 billboard = 1
 texture = SubResource("ImageTexture_w5h6m")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="ANmedif" type="CollisionShape3D" parent="." unique_id=1972403778]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_s8enn")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

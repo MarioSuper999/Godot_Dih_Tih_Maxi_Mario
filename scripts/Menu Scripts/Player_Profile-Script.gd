@@ -1,9 +1,10 @@
 class_name PlayerProfile
 extends Button
 signal leave_lobby
+
+
 var n = 0
 
-@onready var profile_button: Button = $"Profile Button"
 const PlayerScripts = preload("res://scripts/Character Scripts/Player-Scripts.gd")
 
 

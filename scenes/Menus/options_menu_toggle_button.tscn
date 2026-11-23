@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cfipy115ualwy"]
+
+[ext_resource type="Script" uid="uid://b3vtett7m312m" path="res://scripts/Menu Scripts/Setting_Labels-Script.gd" id="1_77ndl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mvlli"]
+font_size = 36
+
+[node name="Options Menu Toggle Button" type="HBoxContainer" unique_id=375766456]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_77ndl")
+
+[node name="Label" type="Label" parent="." unique_id=143580114]
+layout_mode = 2
+text = "NAMING ERROR | Code:001 (renaming of buttons failed)"
+label_settings = SubResource("LabelSettings_mvlli")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=98368323]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Toggle Button" type="Button" parent="." unique_id=915767577]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+toggle_mode = true
+text = "TOGGLE"

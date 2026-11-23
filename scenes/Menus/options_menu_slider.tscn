@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ro5oorq0208b"]
+
+[ext_resource type="Script" uid="uid://b3vtett7m312m" path="res://scripts/Menu Scripts/Setting_Labels-Script.gd" id="1_k2rl7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mvlli"]
+font_size = 36
+
+[node name="Options Menu Slider" type="HBoxContainer" unique_id=515552510]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_k2rl7")
+
+[node name="Label" type="Label" parent="." unique_id=1608999956]
+layout_mode = 2
+text = "NAMING ERROR | Code:001 (renaming of buttons failed)"
+label_settings = SubResource("LabelSettings_mvlli")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1905020099]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider" type="HSlider" parent="." unique_id=1145899806]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2

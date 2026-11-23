@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b2io7qp1cfie8" path="res://scripts/Menu Scripts/Main_Menu-Script.gd" id="1_8i5ae"]
 [ext_resource type="PackedScene" uid="uid://4ruf2ptfnuqb" path="res://scenes/Menus/options_menu.tscn" id="2_rvjno"]
+[ext_resource type="PackedScene" uid="uid://b72whvcx1qar5" path="res://scenes/Menus/customize_menu.tscn" id="3_iep04"]
 
 [sub_resource type="SystemFont" id="SystemFont_p8bru"]
 font_names = PackedStringArray("Mistral")
@@ -119,5 +120,9 @@ theme_override_font_sizes/font_size = 36
 text = "Quit"
 
 [node name="Options Menu" parent="." unique_id=1621236567 instance=ExtResource("2_rvjno")]
+visible = false
+layout_mode = 1
+
+[node name="Customize Menu" parent="." unique_id=1850953988 instance=ExtResource("3_iep04")]
 visible = false
 layout_mode = 1

@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://4ruf2ptfnuqb"]
 
 [ext_resource type="Script" uid="uid://l0ekuuipdoxv" path="res://scripts/Menu Scripts/Options_Menu-Script.gd" id="1_h1g31"]
-[ext_resource type="PackedScene" uid="uid://cooyxjd48nvdw" path="res://scenes/Menus/settings_tab_conatiner.tscn" id="2_qldvp"]
+[ext_resource type="PackedScene" uid="uid://bl6di1mkyxwmv" path="res://scenes/Menus/options_menu_dropdown_menu.tscn" id="2_otqhu"]
+[ext_resource type="PackedScene" uid="uid://11o5vot8fvv8" path="res://scenes/Menus/hotkey_rebind_button.tscn" id="2_qldvp"]
+[ext_resource type="PackedScene" uid="uid://cfipy115ualwy" path="res://scenes/Menus/options_menu_toggle_button.tscn" id="2_sg86w"]
+[ext_resource type="PackedScene" uid="uid://ro5oorq0208b" path="res://scenes/Menus/options_menu_slider.tscn" id="4_f71jj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yj7vy"]
 font_size = 36
@@ -38,9 +41,479 @@ label_settings = SubResource("LabelSettings_yj7vy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Settings Tab Conatiner" parent="MarginContainer/VBoxContainer" unique_id=1939202729 instance=ExtResource("2_qldvp")]
+[node name="Settings" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=2102919551]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 72
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 96
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/Settings" unique_id=670625054]
+layout_mode = 2
+current_tab = 1
+
+[node name="Gameplay" type="TabBar" parent="MarginContainer/VBoxContainer/Settings/TabContainer" unique_id=459307387]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay" unique_id=840758147]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer" unique_id=1127789212]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer" unique_id=62831782]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer" unique_id=873667914]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2021579850]
+layout_mode = 2
+
+[node name="Options Menu Slider" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=515552510 instance=ExtResource("4_f71jj")]
+layout_mode = 2
+setting_name = "Field of View"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=56831321]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=375766456 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Movement Smoothing"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=221451427]
+layout_mode = 2
+
+[node name="Options Menu Slider2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1589222113 instance=ExtResource("4_f71jj")]
+layout_mode = 2
+setting_name = "Camera Smoothing"
+
+[node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=612943233]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=901585670 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Reduce Camera Bobbing"
+
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Gameplay/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=936634659]
+layout_mode = 2
+
+[node name="Graphics" type="TabBar" parent="MarginContainer/VBoxContainer/Settings/TabContainer" unique_id=364383361]
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics" unique_id=1481412812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer" unique_id=681287151]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer" unique_id=1759399471]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer" unique_id=1714445772]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=968108011]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=239017254 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Window Mode"
+
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=894264866]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1735445565 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Resolution"
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=262228485]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=520566461 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "VSync"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2106875098]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu9" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2092101154 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Framerate Limit"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2010308226]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu3" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=6780846 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Graphics Preset"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1633865709]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu4" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=50404478 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Lighting"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1927954089]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu5" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=216989619 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Shadows"
+
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1336219691]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu6" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=471579236 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Texture Quality"
+
+[node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=804627923]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu7" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1642237213 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Particle Quality"
+
+[node name="HSeparator11" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=582982955]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu8" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1627211369 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Anti Aliasing"
+
+[node name="HSeparator12" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1086392622]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=962303531 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Motion blur"
+
+[node name="HSeparator13" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=107533238]
+layout_mode = 2
+
+[node name="Options Menu Slider2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1113823190 instance=ExtResource("4_f71jj")]
+layout_mode = 2
+setting_name = "Gamma"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Graphics/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2095796762]
+layout_mode = 2
+
+[node name="Controls" type="TabBar" parent="MarginContainer/VBoxContainer/Settings/TabContainer" unique_id=184047383]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls" unique_id=1705830111]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer" unique_id=1175693702]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer" unique_id=1051963156]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 24
+
+[node name="Button Vbox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer" unique_id=2102957962]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HSeparator12" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=608006464]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1727410656 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_forward"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=641050084]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1726497160 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_backward"
+
+[node name="HSeparator11" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1648556534]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button3" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=827575026 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+
+[node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1436615554]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button4" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1485033530 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_right"
+
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1343964639]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button5" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1420022729 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_jump"
+
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1198298965]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button6" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=231437011 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_crouch"
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=93306530]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button7" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1176519598 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_sprint"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1284798120]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button10" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=476705991 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_interact"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1851873049]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button8" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1250776527 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_pickup"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1937288369]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button9" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=64790561 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_drop"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=1252617022]
+layout_mode = 2
+
+[node name="Hotkey Rebind Button11" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=223973932 instance=ExtResource("2_qldvp")]
+layout_mode = 2
+action_name = "input_inventory"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Controls/MarginContainer/ScrollContainer/MarginContainer/Button Vbox" unique_id=559585158]
+layout_mode = 2
+
+[node name="Audio" type="TabBar" parent="MarginContainer/VBoxContainer/Settings/TabContainer" unique_id=803417743]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio" unique_id=605305698]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer" unique_id=827555717]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer" unique_id=761594202]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer" unique_id=1632067585]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=779506323]
+layout_mode = 2
+
+[node name="Options Menu Slider" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=196695280 instance=ExtResource("4_f71jj")]
+layout_mode = 2
+setting_name = "Master Volume"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1887013921]
+layout_mode = 2
+
+[node name="Options Menu Slider2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=424114445 instance=ExtResource("4_f71jj")]
+layout_mode = 2
+setting_name = "Music Volume"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2017835918]
+layout_mode = 2
+
+[node name="Options Menu Slider3" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=929085851 instance=ExtResource("4_f71jj")]
+layout_mode = 2
+setting_name = "SFX Volume"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1434105465]
+layout_mode = 2
+
+[node name="Options Menu Slider4" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1378963496 instance=ExtResource("4_f71jj")]
+layout_mode = 2
+setting_name = "Proximity Voicechat Volume"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1148918594]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1943948250 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Select Microphone"
+
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=802293702]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1830197680 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Select Speaker"
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1444477732]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1944825453 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Push To Talk"
+
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Audio/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1893397557]
+layout_mode = 2
+
+[node name="Accesibility" type="TabBar" parent="MarginContainer/VBoxContainer/Settings/TabContainer" unique_id=1871543462]
+visible = false
+layout_mode = 2
+tab_alignment = 1
+metadata/_tab_index = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility" unique_id=1337729612]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer" unique_id=1156299089]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer" unique_id=75650922]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer" unique_id=514299605]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1947854345]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=588537236 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Language"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1833323283]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1972665138 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Narrator"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2115797848]
+layout_mode = 2
+
+[node name="Options Menu Dropdown Menu2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1457674691 instance=ExtResource("2_otqhu")]
+layout_mode = 2
+setting_name = "Colorblind Settings"
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1499225732]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button2" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1538894615 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Photosensivity"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=690959731]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button3" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1580866420 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Arachnophobia"
+
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=901501782]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button4" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1649739036 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Reduce Camera Bobbing"
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1541356815]
+layout_mode = 2
+
+[node name="Options Menu Toggle Button5" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=977530662 instance=ExtResource("2_sg86w")]
+layout_mode = 2
+setting_name = "Special Mode"
+
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer/Settings/TabContainer/Accesibility/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1907493030]
+layout_mode = 2
 
 [node name="Back Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1080910978]
 layout_mode = 2

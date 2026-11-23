@@ -21,6 +21,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	Steam.run_callbacks()
 func host_lobby():
+	if multiplayer.multiplayer_peer != null:
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
 	is_host = true
 	Steam.createLobby(LOBBY_TYPE,MAX_MEMBERS)
 
@@ -33,6 +36,7 @@ func on_lobby_created(connect : int, lobby_id : int) -> void:
 		peer.create_host()
 		multiplayer.multiplayer_peer = peer
 		host_created.emit()
+		print("Lobby created: ", lobby_id)
 
 func on_lobby_joined(lobby_id : int, permissions : int, locked : bool, response : int) -> void:
 	if response == Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
@@ -42,6 +46,9 @@ func on_lobby_joined(lobby_id : int, permissions : int, locked : bool, response 
 		peer.server_relay = true
 		peer.create_client(Steam.getLobbyOwner(lobby_id))
 		multiplayer.multiplayer_peer = peer
+		if not current_lobby_id == lobby_id:
+			current_lobby_id = lobby_id
+			get_tree().change_scene_to_file("res://scenes/Menus/multiplayer_lobby.tscn")
 
 func on_lobby_left():
 	if is_host:

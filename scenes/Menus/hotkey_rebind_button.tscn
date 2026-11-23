@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://11o5vot8fvv8"]
+
+[ext_resource type="Script" uid="uid://c4p0f4si1np0r" path="res://scripts/Menu Scripts/Hotkey_Rebind_Button-Script.gd" id="1_mog8w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1tj8"]
+font_size = 36
+
+[node name="Hotkey Rebind Button" type="HBoxContainer" unique_id=1727410656]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_mog8w")
+
+[node name="Label" type="Label" parent="." unique_id=1557625818]
+layout_mode = 2
+text = "NAMING ERROR | Code:001 (renaming of buttons failed)"
+label_settings = SubResource("LabelSettings_s1tj8")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=126670763]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="." unique_id=1910216970]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+toggle_mode = true
+text = "HOTKEY_KEY"
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

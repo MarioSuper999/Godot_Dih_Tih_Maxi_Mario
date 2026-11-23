@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bi5p6yjgox8jf" path="res://assets/Spring2014_Virginia-Underground_Luray-Caverns-Dream-Lake_Credit_Susana-Raab.jpg" id="2_d53w3"]
 [ext_resource type="PackedScene" uid="uid://buovsbbkla7cl" path="res://scenes/Menus/profile_button.tscn" id="3_d53w3"]
 [ext_resource type="Script" uid="uid://cm5o1efs08xro" path="res://scripts/Character Scripts/Invite_Button.gd" id="4_u0sqb"]
+[ext_resource type="PackedScene" uid="uid://4ruf2ptfnuqb" path="res://scenes/Menus/options_menu.tscn" id="5_nx6mu"]
 
 [sub_resource type="SystemFont" id="SystemFont_p8bru"]
 font_names = PackedStringArray("Mistral")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_yj7vy"]
 font = SubResource("SystemFont_p8bru")
@@ -136,3 +138,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "+"
 script = ExtResource("4_u0sqb")
+
+[node name="Options Menu" parent="." unique_id=1621236567 instance=ExtResource("5_nx6mu")]
+visible = false
+layout_mode = 1

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://drilfcv6mfn1h"]
+
+[ext_resource type="Script" uid="uid://c4p0f4si1np0r" path="res://scripts/Menu Scripts/Hotkey_Rebind_Button-Script.gd" id="1_ms5x4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ms5x4"]
+font_size = 36
+
+[node name="Hotkey Button" type="Control" unique_id=1532812288]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ms5x4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2032470759]
+layout_mode = 1
+offset_right = 586.0
+offset_bottom = 58.0
+
+[node name="label" type="Label" parent="HBoxContainer" unique_id=1743578645]
+layout_mode = 2
+text = "HOTKEY"
+label_settings = SubResource("LabelSettings_ms5x4")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=40949668]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=1641364536]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+toggle_mode = true
+text = "HORKEY_KEY"

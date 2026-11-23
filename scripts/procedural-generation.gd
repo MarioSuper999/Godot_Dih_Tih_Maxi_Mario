@@ -65,19 +65,18 @@ func genPath(length):
 		if not await place_box(box, branch_index, results):
 			if abs(branch_index) <= len(spawned_boxes):
 				branch_index -= 1
-				#if abs(branch_index)+ 1 + 3* branch_backoff <= len(spawned_boxes):
-					#branch_index -= 1 + 3* branch_backoff
-				#elif abs(branch_index)+ 1 <= len(spawned_boxes):
-					#branch_index -= 1
-				#else:
-				#branch_index = - len(spawned_boxes) 
-				#print("new Branch at:", branch_index)
-				branch_backoff += 1
-				i -= 1
-				print("f")
+				if abs(branch_index)+ 1 + 3* branch_backoff <= len(spawned_boxes):
+					branch_index -= 1 + 3* branch_backoff
+					branch_backoff += 1
+				elif abs(branch_index)+ 1 <= len(spawned_boxes):
+					branch_index -= 1
+				else:
+					branch_index = - len(spawned_boxes) 
+					print("new Branch at:", branch_index)
 			else:
 				print("this path is not spawnable")
 				break
+			i -= 1
 		else:
 			branch_index = -2
 			branch_backoff = 0
@@ -89,7 +88,7 @@ func genPath(length):
 	is_generating = false
 
 func get_new_pos(branch_index, size, prev_size, axis, box):
-	var pos_old = spawned_boxes[-2].position
+	var pos_old = spawned_boxes[branch_index].position
 	var dir = [-1,1].pick_random()
 	var offsetx = (size.x/2) + (prev_size.x/ 2)
 	var offsetz = (size.z/2) + (prev_size.z/ 2) 
@@ -107,6 +106,8 @@ func get_new_pos(branch_index, size, prev_size, axis, box):
 		box.queue_free()
 		spawned_boxes.pop_back()
 		boxes_size.pop_back()
+		return false
+	return true
 
 
 func collides(box) ->  bool:
